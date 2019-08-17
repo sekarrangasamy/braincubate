@@ -1,0 +1,54 @@
+<nav id="stackNav" #stackNav class="header-navbar navbar-expand-md navbar navbar-with-menu fixed-top navbar-semi-dark navbar-shadow">
+	<div class="navbar-wrapper">
+		<div class="navbar-header">
+			<ul class="nav navbar-nav flex-row">
+				<li class="nav-item mobile-menu d-md-none mr-auto">
+					<a class="nav-link nav-menu-main menu-toggle hidden-xs">
+						<i class="ft-menu font-large-1"></i>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="navbar-brand mt-4">
+						<img class="left-menu-icon-align" src="assets/braincubate-images/logo.png" width="200px" height="40px">
+					</a>
+				</li>
+				<li class="nav-item d-md-none">
+					<a data-toggle="collapse" data-target="#navbar-mobile" class="nav-link open-navbar-container">
+						<i class="fa fa-ellipsis-v"></i>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="navbar-container content f-16">
+			<div id="navbar-mobile" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav mr-auto float-left">
+					<li class="nav-item d-none d-md-block">
+						<a href="javascript:;" class="nav-link nav-menu-main menu-toggle hidden-xs d-block" id="stackNavMenu" #stackNavMenu>
+							<i class="ft-menu" (click)="hideNavbar()"></i>
+						</a>
+						<a routerLink="/changelog" class="nav-link nav-menu-main hidden-xs font-small-3 d-none" id="stackNavBack" #stackNavBack>
+							<i class="ft-arrow-left"></i>Back
+						</a>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav float-right">
+					<li class="dropdown dropdown-user nav-item">
+						<a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown" aria-expanded="true">
+							<!-- <span class="avatar avatar-online">
+								<img src="assets/braincubate-images/avatar.png" onError="this.src='assets/braincubate-images/avatar.png';" alt="avatar">
+								<i></i>
+							</span> -->
+							<span class="user-name ">{{admin}}</span>
+						</a>
+						<div class="dropdown-menu dropdown-menu-right">
+							<a class="dropdown-item" (click)="logout()">
+								<i class="ft-power"></i> Logout</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<ngx-spinner></ngx-spinner>

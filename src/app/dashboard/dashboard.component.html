@@ -1,0 +1,133 @@
+<div class="content-wrapper">
+  <div class="content-header row">
+  </div>
+  <div class="content-body">
+    <div class="row" >
+      <div class="col-xl-3 col-lg-6 col-12">
+        <div class="card w-100">
+            <div class="card-custom-body">
+                <a [routerLink]="['/users']">
+              <div class="media align-items-stretch">
+                <div class="p-2 text-center bg-primary bg-darken-2">
+                  <img src="../../assets/braincubate-images/users.png" class="icon">
+                </div>
+                <div class="p-2 bg-gradient-x-primary white media-body">
+                  <h5>Users</h5>
+                  <h5 class="text-bold-400 mb-0">{{usersCount}}</h5>
+                </div>
+              </div>
+              </a>
+            </div>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-6 col-12">
+        <div class="card w-100">
+          <a [routerLink]="['/levels']">
+            <div class="card-csutom-body">
+              <div class="media align-items-stretch">
+                <div class="p-2 text-center bg-danger bg-darken-2">
+                  <img src="../../assets/braincubate-images/trend.png" class="icon">
+                </div>
+                <div class="p-2 bg-gradient-x-danger white media-body">
+                  <h5>Levels</h5>
+                  <h5 class="text-bold-400 mb-0">{{levelsCount}}</h5>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-6 col-12">
+        <div class="card w-100">
+          <a [routerLink]="['/games']">
+            <div class="card-custom-body">
+              <div class="media align-items-stretch">
+                <div class="p-2 text-center bg-warning bg-darken-2">
+                  <img src="../../assets/braincubate-images/gamepad-controller.png" class="icon">
+                </div>
+                <div class="p-2 bg-gradient-x-warning white media-body">
+                  <h5>Games</h5>
+                  <h5 class="text-bold-400 mb-0">{{gamesCount}}</h5>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="col-xl-3 col-lg-6 col-12">
+        <div class="card w-100">
+          <a [routerLink]="['/announcement']">
+            <div class="card-custom-body">
+              <div class="media align-items-stretch">
+                <div class="p-2 text-center bg-success bg-darken-2">
+                  <img src="../../assets/braincubate-images/megaphone.png" class="icon">
+                </div>
+                <div class="p-2 bg-gradient-x-success white media-body">
+                  <h5>Announcements</h5>
+                  <h5 class="text-bold-400 mb-0">{{announcementsCount}} </h5>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="col-xl-3 col-lg-6 col-12">
+        <div class="card w-100">
+          <div class="card-custom-body">
+            <a [routerLink]="['/achievement']">
+              <div class="media align-items-stretch">
+                <div class="p-2 text-center bg-info bg-darken-2">
+                  <img src="../../assets/braincubate-images/trophy.png" class="icon">
+                </div>
+                <div class="p-2 bg-gradient-x-info white media-body">
+                  <h5>Achievements</h5>
+                  <h5 class="text-bold-400 mb-0">{{achievementsCount}} </h5>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="d-flex flex-column flex-md-row align-items-center mt-2">
+    <h3 class="my-0 mr-md-auto title_font_style">
+      USER REGISTRATION CHART
+    </h3>
+
+    <div class="dataRangePicker">
+      <div [formGroup]="dateRangeForm">
+        <div class="input-group">
+          <input type="text" class="form-control" formControlName="range" #dp="bsDaterangepicker" bsDaterangepicker
+            [bsConfig]="{  rangeInputFormat: 'MM/DD/YYYY'}" placement="left" (bsValueChange)="onValueChange($event)" />
+            <div class="input-group-append">
+                <button class="btn btn-outline-primary"  (click)="dp.toggle()" [attr.aria-expanded]="dp.isOpen" type="button" id="button-addon2"><i class="fa fa-calendar"></i></button>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- for resize (window:resize)="onResize($event) -->
+ <div class="analytics pt-2" >
+   <div class="row">
+     <div class="col-md-6">
+        <div class="card" >
+            <div class="card-body">
+              <div id="container" width='100%'></div>
+            </div>
+          </div>
+     </div>
+     <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+              <div id="pie-container" width='100%'></div>
+            </div>
+          </div>
+     </div>
+   </div>
+ </div>
+
+
+</div>

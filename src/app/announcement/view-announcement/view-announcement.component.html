@@ -1,0 +1,157 @@
+<div class="content-wrapper">
+  <div class="content-header row">
+    <div class="col-md-6">
+      <h3 class="title_font_style">ANNOUNCEMENTS</h3>
+      <div class="row breadcrumbs-top">
+        <div class="breadcrumb-wrapper col-12">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a [routerLink]="'/announcement'">Announcements</a>
+            </li>
+            <li class="breadcrumb-item active"> View </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-header-right col-md-6 col-12">
+      <div class="row">
+        <div class="col-md-12">
+          <button class="btn btn-info  float-md-right" (click)="sendAnnouncement()"> Send </button>
+        </div>
+      </div>
+    </div>
+  </div>
+<br/>
+
+  <div class="content-body">
+    <div class="card">
+        <div class="card-body">
+
+
+          <div class="row">
+
+              <div class="col-md-2 mb-2 mt-2">
+                  <span *ngIf="announcementIcon;else noIcon">
+                    <img class="viewImg" src="{{announcementIcon}}" alt="img" height="200" class="img-fluid" style="padding : 2px">
+                  </span>
+                  <ng-template #noIcon>
+                    <img class="viewImg" src="../../assets/braincubate-images/no_image_png.png" alt="img" height="200" class="img-fluid" style="padding : 2px">
+                  </ng-template>
+              </div>
+
+         
+              <!-- <img src="{{announcementIcon}}"  style="padding : 2px"> -->
+         
+
+            <div class="col-md-10 mb-2 mt-2">
+
+              <div class="card">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Title</th>
+                        <th>Type </th>
+
+                        <th>Created On </th>
+                        <th>Last Updated On</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr>
+                        <td> {{announcementTitle}} </td>
+                        <td> {{announcementType}} </td>
+
+                        <td> {{announcementCreatedOn | date : 'mediumDate'}} </td>
+                        <td> {{announcementUpdatedOn | date : 'mediumDate'}} </td>
+                      </tr>
+                    </tbody>
+
+                  </table>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th style="text-align : left"> DESCRIPTION </th>
+                      </tr>
+                    </thead>
+                  </table>
+                </div>
+
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+
+                  {{announcementDesc}}
+
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+          </div>
+        </div>
+    </div>
+
+
+
+
+
+    <h4 class="form-section mt-2 mb-2 mr-2 ml-2">
+      <i class="fa fa-h-square"></i>
+      Sent History </h4>
+
+
+    <div class="card" >
+      <div class="card-content">
+          <div class="table-responsive table-striped " >
+               <table class="table mb-0" >
+                <thead>
+                  <tr>
+                    <th style="width:50px;text-align: center">DATE</th>
+                    <th style="width:100px">TITLE</th>
+                    <th style="width:300px">DESCRIPTION</th>
+                  </tr>
+                </thead>
+      
+                <tbody >
+                  <tr *ngFor="let notification of notificationsData">
+                    <td style="width:50px;text-align: center"> {{notification?.created_at | date : 'mediumDate'}}</td>
+                    <td style="width:100px"> {{notification?.title}} </td>
+                    <td class="break-word" style="width:300px">
+                      <span *ngIf="notification?.description;else noDesc">
+                        <!-- {{ notification?.description.length > textLimit ? notification?.description.substring(0,100)+'.....'  : notification?.description}} -->
+                        {{notification?.description}}
+                      </span>
+                      <ng-template #noDesc>
+                        -
+                      </ng-template>
+        
+                    </td>
+                   
+                  </tr>
+                </tbody>
+              </table> 
+              
+            </div>
+      </div>
+     
+          <footer class="d-flex justify-content-end mt-1" *ngIf="notificationsData?.length">
+              <ngb-pagination class=" pagination " [collectionSize]="length " [(page)]="page " [pageSize]="limit "
+                [maxSize]="5 " [ellipses]="false " [boundaryLinks]="true " (pageChange)="loadPage(page) ">
+              </ngb-pagination>
+            </footer>
+      
+    </div>
+  </div>
+</div>

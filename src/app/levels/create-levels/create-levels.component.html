@@ -1,0 +1,214 @@
+<div class="content-wrapper">
+  <div class="content-header row">
+    <div class="col-md-6">
+      <h3 class="title_font_style">LEVELS</h3>
+      <div class="row breadcrumbs-top">
+        <div class="breadcrumb-wrapper col-12">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a [routerLink]="'/levels'">Levels </a>
+            </li>
+            <li class="breadcrumb-item active">{{this.title}}</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div><br />
+  <div class="content-body">
+    <div class="card">
+      <div class="card-content collpase show">
+        <div class="card-body">
+          <form [formGroup]="createLevelForm" autocomplete="off">
+            <div class="form-group">
+              <div class="row">
+                <div class="col-md-4 mb-2">
+                  <label>Name</label>
+                  <span class="required_mark">*</span>
+                  <input type="text" class="form-control" formControlName="game_name" placeholder="Enter name"
+                    [ngClass]="{ 'is-invalid': submitted && f.game_name.errors }" />
+                  <div *ngIf="submitted && f.game_name.errors" class="invalid-feedback">
+                    <div *ngIf="f.game_name.errors.required">Level name is required</div>
+                  </div>
+                </div>
+                <div class="col-md-2"></div>
+                <div class="col-md-4 mb-2 normal-cb">
+                  <label>Color Code</label>
+                  <input type="text" [value]="color" [style.background]="color" [(colorPicker)]="color"
+                    [(cpPosition)]="bottom" class="form-control" style="color:black"
+                    (colorPickerChange)="cmykColor=onChangeColorCmyk($event);" formControlName="color_code"
+                    pattern="^#([a-fA-F0-9]{0,6})$" (input)="inputCode($event)"
+                    placeholder="Enter Color Code(eg:#fffff)" />
+                  <div *ngIf="createLevelForm.get('color_code').hasError('pattern')" class="text-danger">
+                    <span>Invalid Color Code</span>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-2 mobile-cp">
+                  <label>Color Code</label>
+                  <input type="text" [value]="color" (input)="inputCode($event)" [style.background]="color"
+                    [(colorPicker)]="color" [(cpPosition)]="bottomcpmobile" class="form-control" style="color:black"
+                    (colorPickerChange)="cmykColor=onChangeColorCmyk($event);" formControlName="color_code"
+                    pattern="^#([a-fA-F0-9]{0,6})$" placeholder="Enter Color Code(eg:#fffff)" />
+                  <div *ngIf="createLevelForm.get('color_code').hasError('pattern')" class="text-danger">
+                    <span>Invalid Color Code</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-2">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <label>Icon</label>
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="customFile1" formControlName="image_name"
+                          (change)="onImageUpload($event)" accept="image/*">
+                        <div *ngIf="this.icon_name; else imageLabel">
+                          <label class="custom-file-label" for="customFile1">
+                            <small class="imgName">
+                              {{this.icon_name.length > imgLabelLimit ? this.icon_name.substring(0,imgLabelLimit)+'.....' + imgExt : this.icon_name}}
+                            </small>
+                            <!-- {{this.icon_name}} -->
+                          </label>
+                        </div>
+                        <ng-template #imageLabel>
+                          <label class="custom-file-label" for="customFile1">Choose File</label>
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-md-4" *ngIf="img_url">
+                      <img [src]="img_url" style="height: 70px;" class="img-fluid">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <label>Background Image</label>
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="customFile2" formControlName="bg_image"
+                          (change)="onBgImageUpload($event)" accept="image/*">
+                        <div *ngIf="this.bg_name; else imageLabel">
+                          <label class="custom-file-label" for="customFile1">
+                            <small class="imgName">
+                              {{this.bg_name.length > imgLabelLimit ? this.bg_name.substring(0,imgLabelLimit)+'.....' + imgExt : this.bg_name}}
+                            </small>
+                            <!-- {{this.bg_name}} -->
+                          </label>
+                        </div>
+                        <ng-template #imageLabel>
+                          <label class="custom-file-label" for="customFile1">Choose File</label>
+                        </ng-template>
+                      </div>
+                    </div>
+                    <div class="col-md-4" *ngIf="bg_url">
+                      <img [src]="bg_url" style="height: 70px;" class="img-fluid">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <h4 class="form-section title_font_style">
+                <i class="fa fa-address-card-o"></i>Required Score</h4>
+
+              <div class="row" style="white-space: nowrap;">
+                <div class="col-md-2 mb-2">
+                  <label>Speed</label>
+                  <input type="number" min="0" class="form-control" formControlName="speed"
+                    placeholder="Enter speed " />
+                </div>
+
+                <div class="col-md-2 mb-2">
+                  <label>Accuracy</label>
+                  <input type="number" min="0" class="form-control" formControlName="accuracy"
+                    placeholder="Enter accuracy" />
+                </div>
+
+                <div class="col-md-2 mb-2">
+                  <label>Concentration</label>
+                  <input type="number" min="0" class="form-control" formControlName="concentration"
+                    placeholder="Enter concentration" />
+                </div>
+
+                <div class=" col-md-2 mb-2">
+                  <label>Problem Solving</label>
+                  <input type="number" min="0" class="form-control" formControlName="problem_solving"
+                    placeholder="Enter problem solving" />
+                </div>
+
+                <div class="col-md-2 mb-2">
+                  <label>Memory</label>
+                  <input type="number" min="0" class="form-control" formControlName="memory"
+                    placeholder="Enter memory" />
+                </div>
+
+                <div class="col-md-2 mb-2">
+                  <label>Visual</label>
+                  <input type="number" min="0" class="form-control" formControlName="visual"
+                    placeholder="Enter visual" />
+                </div>
+              </div>
+
+              <h4 class="form-section title_font_style">
+                <i class="fa fa-address-card-o"></i>Characteristics</h4>
+
+              <div class="row">
+                <div class="col-md-5">
+                  <label>Characteristics</label>
+                  <div class="input-group mb-3">
+                    <input type="text" class="form-control" formControlName="characteristics" id="charData"
+                      placeholder="Enter characteristic" #characteristics aria-describedby="button-addon2 ">
+                    <div class="input-group-append ">
+                      <button class="btn btn-secondary " type="button " for="charData " id="button-addon2 "
+                        (click)="addCharacteristics(characteristics.value)">Add</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="container-fluid">
+                <div *ngIf="characteristicArrayData.length > 0" class="row mt-0 text-left">
+                  <div class="show-table"
+                    [ngClass]="{'scrollVisisble': scorllVisisble,'scrollNotVisisble': !scorllVisisble}">
+                    <table class="table table-sm table-striped table-bordered">
+                      <thead>
+                        <tr>
+                          <th style="width:900px">CHARACTERISTICS</th>
+                          <th style="width:100px;text-align: center">EDIT</th>
+                          <th style="width:100px;text-align: center">DELETE</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let charArray of characteristicArrayData; let i=index;">
+                          <td style="white-space: normal;width:900px">
+                            <!-- {{charArray.length > 100 ? charArray.substring(0,100)+'.....' : charArray}} -->
+                            <form [formGroup]="editCharForm">
+                              <span *ngIf=" this.editValue != 'edit'|| this.name != charArray || this.editValue == 'close'">{{charArray}}</span>
+                              <input type="text"  class="form-control" formControlName="editCharacteristics" *ngIf="this.name === charArray && this.editValue == 'edit'"/>
+                            </form>
+                          </td>
+                          <td style="width:100px;text-align: center;font-size: 1.5rem">
+                            <i class="fa fa-edit text-success cursor-pointer" *ngIf=" this.editValue != 'edit' || this.name != charArray " 
+                              (click)="editDomain(i,charArray)"></i>
+                            <i class="fa fa-save text-success cursor-pointer" *ngIf="this.name === charArray && this.editValue == 'edit'"
+                              (click)="saveDomain(i,charArray)"></i>
+                          </td>
+                          <td style="width:100px;text-align: center;font-size: 1.5rem">
+                            <i class="fa fa-trash-o ml-0 text-danger cursor-pointer" aria-hidden="true "
+                              (click)="deleteCharacteristic(charArray) "></i>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+          <div class="d-flex justify-content-center mt-1 ">
+            <button class="btn btn-primary " (click)="onSubmit() ">{{this.submitBtn}}</button> &nbsp;&nbsp;
+            <button class="btn btn-danger " (click)="cancel() ">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

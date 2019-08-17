@@ -1,0 +1,233 @@
+<div class="content-wrapper" ng-app="">
+  <!-- <app-filter (childEvent)="loadChildObject($event)"></app-filter> -->
+
+  <!--Filter-->
+  <form id="filterPanel" name="braincubateFilterForm" novalidate #braincubateFilterForm="ngForm" class="form">
+    <div class="row">
+      <section id="prerequisite" class="card" style="width: 100%;">
+        <a class="accordion collapsed" data-toggle="collapse" href="#filterPanelToggle">
+          <div class="card-header c-bg">
+            <label class="f-16 c-white filter-white">
+              <i class="fa fa-filter fa-lg"></i> Filters: </label>
+
+            <div class="heading-elements">
+              <ul class="list-inline mb-0 mt-4">
+                <li>
+                  <div class="right-icon"><i class="right fa"></i></div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </a>
+        <div class="card-content collapse" id="filterPanelToggle">
+          <div class="card-body">
+            <form [formGroup]="userForm">
+              <div class="row">
+                <div class="col-lg-4 col-xl-4 col-md-4 mb-2">
+                  <label>Name</label>
+                  <input type="text" class="form-control" formControlName="name" placeholder="Search by name" />
+                </div>
+                <div class="col-lg-4 col-xl-4 col-md-4 mb-2">
+                  <label>Email</label>
+                  <input type="text" class="form-control" formControlName="email" placeholder="Search by email" />
+                </div>
+                <div class="col-lg-4 col-xl-4 col-md-4 mb-2">
+                  <label>Age</label>
+                  <input type="number" class="form-control" min="1" formControlName="age" placeholder="Search by age" />
+                </div>
+                <div class="col-lg-4 col-xl-4 col-md-4 mb-2">
+                  <label>Level</label>
+                  <input autocomplete="off" class="form-control typeahead-basic tt-input" formControlName="level"
+                    [typeahead]="levelData" [typeaheadOptionField]="'name'" (typeaheadOnSelect)="onSelected($event)"
+                    (input)="change($event.target.value)" [typeaheadMinLength]="0" [typeaheadWaitMs]="300"
+                    [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="5"
+                    (typeaheadNoResults)="typeaheadNoResults($event)" placeholder="Search by level">
+                  <div class="text-danger" *ngIf="noResult"><strong>No Results Found</strong></div>
+
+                </div>
+                <div class="col-lg-4 col-xl-4 col-md-4 mb-2">
+                  <label>Country</label>
+                  <input autocomplete="off" class="form-control typeahead-basic tt-input" formControlName="country"
+                    [typeahead]="countries" [typeaheadOptionField]="'name'"
+                    (typeaheadOnSelect)="onSelectedCountry($event)" (input)="countryChange($event.target.value)"
+                    [typeaheadMinLength]="0" [typeaheadWaitMs]="300" [typeaheadScrollable]="true"
+                    [typeaheadOptionsInScrollableView]="5" (typeaheadNoResults)="countryNoResults($event)"
+                    placeholder="Search by country">
+                  <div class="text-danger" *ngIf="noCountryResults"><strong>No Results Found</strong></div>
+
+                </div>
+                <div class="col-lg-4 col-xl-4 col-md-4 mb-2">
+                  <label>Status</label>
+                  <select class="form-control" id="select" name="status" formControlName="status"
+                    placeholder="Select status">
+                    <option value="" disabled selected>Select Status</option>
+                    <option *ngFor="let selectedStatus of status_options" [value]="selectedStatus.value">
+                      {{selectedStatus.name}}</option>
+                  </select>
+                </div>
+                <div class="col-lg-4 col-xl-4 col-md-4 mb-2">
+                  <label>Login type</label>
+                  <select class="form-control" id="select" name="login_type" formControlName="login_type"
+                    placeholder="Search by login type">
+                    <option value="" disabled selected>Select Login Type</option>
+                    <option *ngFor="let type of login_type" [value]="type.value">{{type.name}}</option>
+                  </select>
+                </div>
+                <div class="col-lg-4 col-xl-4 col-md-4 mb-2">
+                  <label>From</label>
+                  <div class="input-group">
+                    <input type="text" placeholder="Select Start Date" format="yyyy-mm-dd" class="form-control"
+                      formControlName="start_date" placement="bottom" #dp="bsDatepicker" bsDatepicker
+                      aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-primary" (click)="open(dp)" [attr.aria-expanded]="dp.isOpen"
+                        type="button" id="button-addon2"><i class="fa fa-calendar"></i></button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-xl-4 col-md-4  mb-2">
+                  <label>To</label>
+                  <div class="input-group">
+                    <input type="text" placeholder="Select End Date" format="yyyy-mm-dd" class="form-control"
+                      formControlName="end_date" placement="bottom" #dp1="bsDatepicker" bsDatepicker
+                      aria-describedby="button-addon3">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-primary" (click)="open1(dp1)" [attr.aria-expanded]="dp1.isOpen"
+                        type="button" id="button-addon3"><i class="fa fa-calendar"></i></button>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </form>
+            <div class="d-flex justify-content-end mt-1">
+              <button class="btn btn-primary" (click)="search()">Filter</button> &nbsp;&nbsp;
+              <button class="btn btn-secondary" (click)="cancel()">Reset</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </form>
+  <!--End Filter-->
+
+  <div class="row">
+    <div class="col-md-6">
+      <h3 class="title_font_style">USERS</h3>
+    </div>
+    <div class="col-md-6">
+      <input type="text" name="search2" class="form-control search_input" placeholder="Search By Name"
+        [(ngModel)]="textValue" (ngModelChange)="searchName()" />
+    </div>
+  </div>
+  <br />
+
+  <div>
+    <div class="card">
+      <div class="table-responsive table-striped">
+        <table class="table middile-align mb-0">
+          <thead>
+            <tr>
+              <th>NAME</th>
+              <th>EMAIL</th>
+              <th>AGE</th>
+              <th>PROVIDER</th>
+              <th>COUNTRY</th>
+              <th>STATUS</th>
+              <th style="text-align: center">ACTION</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="userData?.length">
+            <tr *ngFor="let user of userData">
+              <td>
+                <div class="media">
+                  <div class="media-left pr-1">
+                      <span class="user-avatar avatar-md" *ngIf="user?.profile_pic;else noIcon" >
+                          <img  class="rounded-circle" src="{{user?.profile_pic}}" alt="img">
+                      </span>
+                      <ng-template #noIcon>
+                        <span class="user-avatar avatar-md">
+                            <img class="rounded-circle" src="../../assets/braincubate-images/no_image_png.png" alt="img">
+                        </span>
+                      </ng-template>
+                  </div>
+                  <div class="media-body media-middle">
+                  <a [routerLink]="[ '/users/view-users']" [queryParams]="{ id: user?._id, name: user?.name}">
+                    {{user?.name}} </a>
+                    </div>
+                </div>
+              </td>
+              <td>{{user?.email}}</td>
+              <td>{{user?.age}}</td>
+              <td>
+                <span *ngIf="user?.provider ; else noProvider">
+                  {{user?.provider}}
+                </span>
+                <ng-template #noProvider>
+                  -
+                </ng-template>
+
+              </td>
+              <td>
+                <div *ngIf="user.country?.name ; else noCountry">
+                  <span class="flag-icon flag-icon-{{ user?.country.alpha_2 | lowercase }} flag-icon-squared"></span>
+                  <span class="ml-1">{{user.country?.name}}</span>
+                </div>
+                <ng-template #noCountry>-</ng-template>
+
+              </td>
+              <td *ngIf="user?.status=='ACTIVE'">
+                <!-- <label class="switch">
+                  <input type="checkbox" [checked]="true" [value]="user?.status" (change)="onChangeStatus(user?._id)" />
+                  <span class="slider round"></span>
+                </label> -->
+                <ui-switch [checked]="true" [value]="user?.status" (change)="onChangeStatus(user?._id)"></ui-switch>
+              </td>
+              <td *ngIf="user?.status=='INACTIVE'">
+                <!-- <label class="switch">
+                  <input type="checkbox" [checked]="false" [value]="user?.status"
+                    (change)="onChangeStatus(user?._id)" />
+                  <span class="slider round"></span>
+                </label> -->
+
+                <ui-switch [checked]="false" [value]="user?.status" (change)="onChangeStatus(user?._id)"></ui-switch>
+
+              </td>
+              <td style="text-align: center">
+                <!-- <button class="btn btn-primary" [routerLink]="[ '/users/view-users']"
+                  [queryParams]="{ id: user?._id, name: user?.name}">User Details</button> -->
+                  <span class="text-success cursor-pointer" [routerLink]="[ '/users/view-users']" 
+                  [queryParams]="{ id: user?._id, name: user?.name}" title="View" style="outline: none">
+                  <i class="ft-eye mr-2"> </i>
+              </span>
+
+              </td>
+            </tr>
+          </tbody>
+
+          <!-- <tbody *ngIf="!userData?.length">
+            <tr>
+              <div class="data_not_found">
+                Data Not Found
+              </div>
+            </tr>
+          </tbody> -->
+        </table>
+
+        <div *ngIf="noResults">
+          <div *ngIf="!userData?.length" class="d-flex justify-content-center pt-2">
+            <p class="text-danger">
+              <strong>{{errorMsg}}</strong>
+            </p>
+          </div>
+        </div>
+
+        <footer class="d-flex justify-content-end mt-1" *ngIf="userData?.length">
+          <br />
+          <ngb-pagination class="pagination" [collectionSize]="queryCount" [(page)]="page" [pageSize]="limit"
+            [maxSize]="5" [ellipses]="false" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </footer>
+      </div>
+    </div>
+  </div>
+</div>

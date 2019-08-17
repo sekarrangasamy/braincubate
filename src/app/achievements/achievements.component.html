@@ -1,0 +1,127 @@
+<div class="content-wrapper" ng-app="">
+  <div class="content-header row">
+    <div class="col-md-6">
+      <h3 class="title_font_style">ACHIEVEMENTS</h3>
+    </div>
+    <div class="content-header-right col-md-6 col-12">
+      <div class="row">
+        <div class="col-md-10">
+          <div class="search-box">
+              <input type="text" placeholder="Search.." name="search2" class="form-control search_input"
+              placeholder="Search By Name" [(ngModel)]="textValue" (ngModelChange)="search()" />
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="btn-group float-md-right" role="group" aria-label="Button group with nested dropdown">
+
+            <button class="btn btn-info btn_create f-mb createBtn" (click)="createModal()">
+              <!-- <i class="ft-plus-circle createIcon"></i> -->
+              <span>Create</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div class="view" style="width:100%;">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="table-responsive table-striped">
+            <table class="table middile-align mb-0">
+              <thead class="f-mb">
+                <tr>
+                  <!-- <th style="text-align: center;width:20%" scope="col">ICON</th> -->
+                  <th scope="col" style="width:20%">NAME</th>
+                  <th scope="col" style="width:20%">DESCRIPTION</th>
+                  <!-- <th scope="col">CREATED ON</th> -->
+                  <th scope="col" style="text-align: center;width:20%">ACTION</th>
+                </tr>
+              </thead>
+              <tbody class="f-mr" *ngIf="achievementData?.length">
+                <tr *ngFor="let achievement of achievementData;let i=index">
+                  <!-- <td style="text-align: center">
+                    <span *ngIf="achievement?.icon;else noIcon">
+                      <img class="viewImg" src="{{achievement?.icon}}" alt="img">
+                    </span>
+                    <ng-template #noIcon>
+                      <img class="viewImg" src="../../assets/braincubate-images/no_image_png.png" alt="img">
+                    </ng-template>
+                  </td> -->
+                  <td style="width:20%">
+                      <div class="media">
+                          <div class="media-left pr-1">
+                              <span class="user-avatar avatar-md" *ngIf="achievement?.icon;else noIcon">
+                                  <img  class="rounded-circle" src="{{achievement?.icon}}" alt="img">
+                              </span>
+                              <ng-template #noIcon>
+                                <span class="user-avatar avatar-md">
+                                    <img class="rounded-circle" src="../../assets/braincubate-images/no_image_png.png" alt="img">
+                                </span>
+                              </ng-template>
+                          </div>
+                          <div class="media-body media-middle">
+                              <span *ngIf="achievement?.name;else noName">
+                                  {{achievement?.name}}
+                                </span>
+                                <ng-template #noName>-</ng-template>                            </div>
+                        </div>
+                  </td>
+                  <td style="width:20%" class="break-word diffColumn{{i+1}}">
+                    <span *ngIf="achievement?.desc;else noDesc">
+                      <!---->
+                      {{ achievement?.desc.length > textLimit ? achievement?.desc.substring(0,50)+'.....' : achievement?.desc}}
+                      <!-- <small *ngIf="achievement?.desc.length > 50" style="cursor: pointer;color:blue"
+                          (click)="readMore(achievement?.desc.length,textLimit,achievement)">
+                          {{ showShortDesciption ? 'Show More': 'Show Less' }}
+                        </small> -->
+                    </span>
+                    <ng-template #noDesc>-</ng-template>
+                  </td>
+                  <!-- <td>{{achievement?.created_at | date: 'mediumDate'}}</td> -->
+                  <td style="text-align: center">
+                    <span class="text-success cursor-pointer">
+                      <i class="ft-edit mr-2" (click)="updateModal(achievement)"></i>
+                    </span>
+                    <!-- <span class="text-danger cursor-pointer"><i class="ft-trash-2"
+                          (click)="deleteModal(achievement)"></i></span> -->
+                  </td>
+                </tr>
+              </tbody>
+
+              <!-- <tbody *ngIf="!achievementData?.length">
+                  <tr>
+                    <div class="data_not_found f-mm">
+                      Data Not Found
+                    </div>
+                  </tr>
+                </tbody> -->
+            </table>
+            <!-- <div *ngIf="!achievementData?.length" class="d-flex justify-content-center pt-2">
+              <p>Data Not Available</p>
+            </div> -->
+            <div *ngIf="noResults">
+              <div *ngIf="!achievementData?.length" class="d-flex justify-content-center pt-2">
+                <p class="text-danger"><strong>{{errorMsg}}</strong></p>
+              </div>
+            </div>
+            <footer class="d-flex justify-content-end mt-1 mr-2" *ngIf="achievementData?.length">
+              <br />
+              <div class="page" *ngIf="togglePaginate;else searchPagination">
+                <ngb-pagination class=" pagination " [collectionSize]="queryCount " [(page)]="page " [pageSize]="limit"
+                  [maxSize]="5 " [ellipses]="false " [boundaryLinks]="true " (pageChange)="loadPage(page)">
+                </ngb-pagination>
+              </div>
+              <ng-template #searchPagination>
+                <ngb-pagination class=" pagination " [collectionSize]="queryCount " [(page)]="page " [pageSize]="limit"
+                  [maxSize]="5 " [ellipses]="false " [boundaryLinks]="true " (pageChange)="searchPage(page)">
+                </ngb-pagination>
+              </ng-template>
+            </footer>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

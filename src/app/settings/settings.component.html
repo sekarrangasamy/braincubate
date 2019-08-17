@@ -1,0 +1,104 @@
+<div class="content-wrapper">
+  <div class="row">
+    <div class="col-md-6">
+        <h3 class="title_font_style">SETTINGS</h3>
+      </div>
+  </div>
+  <div class="settings mt-1">
+    <div class="card">
+      <div class="card-body f-mm">
+        <div class="row">
+          <div class="col-md-12">
+            <form [formGroup]="settingsForm">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="webLink">Website URL</label>
+                    <input type="text" formControlName="website" id="webLink" class="form-control" placeholder="Enter Website URL">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="fbLink">Facebook URl</label>
+                    <input type="text" formControlName="fb" id="fbLink" class="form-control" placeholder="Enter Facebook URL">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="googleLink">Google URL</label>
+                    <input type="text" formControlName="google" id="googleLink" class="form-control" placeholder="Enter Google URL">
+                  </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="email">Email</label>
+                      <input type="email" formControlName="email" id="email" class="form-control" placeholder="Enter Email" (focusout)="emailValidate($event)"
+                        [autofocus]="isInvalidEmail">
+                      <div *ngIf="isInvalidEmail">
+                        <p style="color : red"> * {{invalidEmailMsg}} </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label for="mobileNo">Contact Number</label>
+                      <input type="tel" formControlName="mobileNo" id="mobileNo" class="form-control" placeholder="Enter Mobile Number" minlength="13"
+                        maxlength="13" (focusout)="contactValidate($event)" [autofocus]="isInvalidContact">
+                      <div *ngIf="isInvalidContact">
+                        <p style="color : red"> * {{invalidContactMsg}} </p>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="f-mm">Logo</label>
+                    <div class="d-flex justify-content-center">
+                      <div draggable="true" class="image-upload dropzone dropzone-area" ngClass="{{dragAreaClass}}">
+                        <div class="upload_align dz-message">
+                          <span>Drop image here</span>
+                          <div>
+                            <label for="file-input">
+                              <i class="ft-download ft-download-normal"></i>
+                            </label>
+                          </div>
+                        </div>
+                        <input id="file-input" type="file" formControlName="logo" class="form-control" (change)="onFileChange($event)" accept="image/*">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div *ngIf="url">
+                    <div class="form-group">
+                      <div class="preivew">
+                        <div class="form-group">
+                          <label class="f-mm">Preview</label>
+                          <div class="d-flex justify-content-center">
+                            <img [src]="url" name="preview" class="form-control img-fluid preview" alt="" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex justify-content-center mt-1">
+                <div *ngIf="buttonToggle; else updateToggle">
+                  <button class="btn btn-primary f-mb" [disabled]="formatDisable || sizeDisable" (click)="save()">Submit</button>
+                </div>
+
+                <ng-template #updateToggle>
+                  <button class="btn btn-primary f-mb" [disabled]="formatDisable || sizeDisable" (click)="update($event)">Update</button>
+                </ng-template>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

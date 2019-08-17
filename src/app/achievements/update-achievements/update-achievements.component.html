@@ -1,0 +1,72 @@
+<div class="modal-header card-header-bg">
+  <h4 class="modal-title f-mb">Update</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true" style="color:white;font-weight: bolder">&times;</span>
+  </button>
+</div>
+<div class="modal-body f-mm">
+  <form [formGroup]="updateForm" autocomplete="off">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="name" class="required f-mm">Name</label>
+          <input type="text" formControlName="name" id="name" class="form-control" placeholder="Enter Name">
+          <div *ngIf="updateForm.get('name').touched && updateForm.get('name').invalid" class="text-danger">
+            <div *ngIf="updateForm.get('name').hasError('required')">
+              Title required
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+          <div class="form-group">
+              <label class="f-mm">Icon</label>
+              <div class="d-flex justify-content-center">
+                <div draggable="true" class="image-upload dropzone-modal dropzone-area-modal" id="dropzone"
+                  ngClass="{{dragAreaClass}}">
+                  <div class="upload_align dz-message-modal">
+                    <span>Drop image here</span>
+                    <div>
+                      <label for="file-input">
+                        <i class="ft-download ft-download-modal"></i>
+                      </label>
+                    </div>
+                  </div>
+                  <input id="file-input" type="file" formControlName="icon" class="form-control"
+                    (change)="onFileChange($event)" accept="image/*">
+                </div>
+              </div>
+            </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        
+        <div class="form-group">
+            <label for="desc" class="f-mm">Description</label>
+            <textarea type="text" formControlName="desc" id="desc" class="form-control" rows="7" (ngModelChange)="textLength($event)" placeholder="Enter Description"></textarea>
+            <p class="form-text text-muted">
+              <!-- <label> Characters Remaining:{{textLimit}}/{{charLimit}}</label> -->
+            </p>
+          </div>
+      </div>
+      <div class="col-md-6" *ngIf="url">
+        <div class="preivew">
+          <div class="form-group">
+            <label class="f-mm">Preview</label>
+            <div class="d-flex justify-content-center">
+            <img [src]="url" name="preview" class="form-control img-fluid preview-modal" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary f-mb" [disabled]="!updateForm.valid || formatDisable || sizeDisable"
+        (click)="update()">Update</button>
+      <button type="button" class="btn btn-danger f-mb"
+        (click)="activeModal.dismiss('Close click')"> Cancel</button>
+    </div>
+
+  </form>
+</div>

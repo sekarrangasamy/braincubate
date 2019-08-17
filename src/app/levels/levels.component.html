@@ -1,0 +1,232 @@
+<div class="content-wrapper" ng-app="">
+
+  <!--Filter-->
+  <!-- <form id="filterPanel" name="braincubateFilterForm" novalidate #braincubateFilterForm="ngForm" class="form">
+      <div class="row">
+        <section id="prerequisite" class="card" style="width: 100%;">
+          <a data-action="collapse">
+            <div class="card-header c-bg">
+              <label class="f-16 c-white filter-white">
+                <i class="fa fa-filter fa-lg"></i> Filters: </label>
+              <div class="heading-elements">
+                <ul class="list-inline mb-0 mt-4">
+                  <li>
+                    <i class="ft-plus collapse-align"></i>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </a>
+          <div class="card-content collapse">
+            <div class="card-body">
+  
+              <form [formGroup]="levelForm">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-2 mb-2">
+                      <label>Name</label>
+                      <input type="text" class="form-control" formControlName="name" />
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <div class="d-flex justify-content-end mt-1">
+                <button class="btn btn-primary" (click)="search()">Filter</button> &nbsp;&nbsp;
+                <button class="btn btn-secondary" (click)="cancel()">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </form> -->
+  <!--End Filter-->
+
+  <div class="content-header row">
+    <div class="col-md-6">
+      <h3 class="title_font_style">LEVELS</h3>
+      <div class="row breadcrumbs-top">
+        <div class="breadcrumb-wrapper col-12">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a [routerLink]="'/levels'">Levels</a>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <div class="content-header-right col-md-6 col-12">
+      <div class="row">
+        <div class="col-md-10">
+            <div class="search-box">
+          <input type="text" name="search2" class="form-control search_input" placeholder="Search By Name" [(ngModel)]="textValue"
+            (ngModelChange)="searchName()" />
+            </div>
+        </div>
+        <div class="col-md-2">
+          <div class="btn-group float-md-right" role="group" aria-label="Button group with nested dropdown">
+            <button class="btn btn-info btn_create f-mb createBtn" [routerLink]="['create-level']" [queryParams]="{btnname:'create'}">
+              <span>Create</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div>
+    <div class="card">
+      <div class="table-responsive table-striped">
+        <table class="table middile-align mb-0">
+          <thead>
+            <tr>
+              <th>NAME</th>
+              <th>COLOR CODE</th>
+              <th style="text-align: center" colspan="7">SCORE</th>
+              <th style="text-align: center">ACTION</th>
+            </tr>
+            <tr>
+              <th></th>
+              <th></th>
+              <th class="sub_heading">Speed</th>
+              <th class="sub_heading">Accuracy</th>
+              <th class="sub_heading">Concentration</th>
+              <th class="sub_heading">Problem Solving</th>
+              <th class="sub_heading">Memory</th>
+              <th class="sub_heading">Visual</th>
+              <th  style="text-align: center" class="sub_heading">Action</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody *ngIf="levelData?.length">
+            <tr *ngFor="let level of levelData">
+              <!-- <td style="text-align:center;">
+                <span *ngIf="level?.icon;else noIcon">
+                  <img class="viewImg" src="{{level?.icon}}" alt="img">
+                </span>
+                <ng-template #noIcon>
+                  <img class="viewImg" src="../../assets/braincubate-images/no_image_png.png" alt="img">
+                </ng-template>
+              </td> -->
+              <td>
+                  <div class="media">
+                      <div class="media-left pr-1">
+                          <span class="user-avatar avatar-md" *ngIf="level?.icon;else noIcon">
+                              <img  class="rounded-circle" src="{{level?.icon}}" alt="img">
+                          </span>
+                          <ng-template #noIcon>
+                            <span class="user-avatar avatar-md">
+                                <img class="rounded-circle" src="../../assets/braincubate-images/no_image_png.png" alt="img">
+                            </span>
+                          </ng-template>
+                      </div>
+                      <div class="media-body media-middle text-nowrap">
+                          {{level?.name}}
+                      </div>
+                    </div>
+              </td>
+              <td  *ngIf="level?.color_code ; else noColor" >
+                <div class="media-body media-middle text-nowrap color-code">
+                      <span [ngStyle]="{'height': '25px','width':'25px','border-radius':'50%','display':'inline-block','background-color':level?.color_code}">
+                        </span>
+                        <span class="code">{{level?.color_code}}</span>
+          
+                
+              </div>
+              </td>
+                      
+           <ng-template #noColor>
+             <td>
+                <span class="nocolor">No Color Code</span>
+             </td>
+            </ng-template>
+              <td>
+                <form [formGroup]="levelScoreForm">
+                    <p *ngIf="this.flagValue != 'editScore' && level?._id || this.flagValue == 'editScore' && this.particularLevelData?._id != level?._id">{{level.required_score?.speed}}</p>
+                    <div *ngIf="this.flagValue == 'editScore' && this.particularLevelData?._id == level?._id">
+                      <input class="edit_score_text_box" type="number" min="1" formControlName="speed">
+                    </div>
+                  
+                </form>
+              </td>
+              <td>
+                <form [formGroup]="levelScoreForm">
+                    <p *ngIf="this.flagValue != 'editScore' && level?._id || this.flagValue == 'editScore' && this.particularLevelData?._id != level?._id">{{level.required_score?.accuracy}}</p>
+                    <div *ngIf="this.flagValue == 'editScore' && this.particularLevelData?._id == level?._id">
+                      <input class="edit_score_text_box" type="number" min="1" formControlName="accuracy">
+                    </div>
+                 
+                </form>
+              </td>
+              <td>
+                <form [formGroup]="levelScoreForm">
+                    <p *ngIf="this.flagValue != 'editScore' && level?._id || this.flagValue == 'editScore' && this.particularLevelData?._id != level?._id">{{level.required_score?.concentration}}</p>
+                    <div *ngIf="this.flagValue == 'editScore' && this.particularLevelData?._id == level?._id">
+                      <input class="edit_score_text_box" type="number" min="1" formControlName="concentration">
+                    </div>
+                 
+                </form>
+              </td>
+              <td>
+                <form [formGroup]="levelScoreForm">
+                  <p *ngIf="this.flagValue != 'editScore' && level?._id  || this.flagValue == 'editScore' && this.particularLevelData?._id != level?._id">{{level.required_score?.problem_solving}}</p>
+                  <div *ngIf="this.flagValue == 'editScore' && this.particularLevelData?._id == level?._id">
+                    <input class="edit_score_text_box" type="number" min="1" formControlName="problem_solving">
+                  </div>
+                </form>
+              </td>
+              <td>
+                <form [formGroup]="levelScoreForm">
+                    <p *ngIf="this.flagValue != 'editScore' && level?._id || this.flagValue == 'editScore' && this.particularLevelData?._id != level?._id">{{level.required_score?.memory}}</p>
+                    <div *ngIf="this.flagValue == 'editScore' && this.particularLevelData?._id == level?._id">
+                      <input class="edit_score_text_box" type="number" min="1" formControlName="memory">
+                    </div>
+                </form>
+              </td>
+              <td>
+                <form [formGroup]="levelScoreForm">
+                  <p *ngIf="this.flagValue != 'editScore' && level?._id || this.flagValue == 'editScore' && this.particularLevelData?._id != level?._id">{{level.required_score?.visual}}</p>
+                  <div *ngIf="this.flagValue == 'editScore' && this.particularLevelData?._id == level?._id">
+                    <input class="edit_score_text_box" type="number" min="1" formControlName="visual">
+                  </div>
+                </form>
+              </td>
+              <td style="text-align: center">
+                <form [formGroup]="levelScoreForm">
+                  <div *ngIf="this.flagValue != 'editScore' && level?._id || this.flagValue == 'editScore' && this.particularLevelData?._id != level?._id">
+                    <button class="btn text-primary cursor-pointer" (click)="editScoreForm(level)">
+                      <i class="ft-edit mr-2"></i>
+                    </button>
+                  </div>
+                  <div *ngIf="this.flagValue == 'editScore' && this.particularLevelData?._id == level?._id">
+                    <button class="btn text-primary cursor-pointer" (click)="saveScoreForm(level)">
+                      <i class="ft-save mr-2"></i>
+                    </button>
+                  </div>
+                </form>
+              </td>
+              <td style="text-align: center"> 
+                <button class="btn text-success cursor-pointer" [routerLink]="['/levels/create-level']" [queryParams]="{ id: level?._id , name: level?.name, btnname: 'edit'}">
+                  <i class="ft-edit mr-2"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- <div *ngIf="!levelData?.length" class="d-flex justify-content-center pt-2">
+          <p>Data Not Found</p>
+        </div> -->
+        <div *ngIf="noResults">
+          <div *ngIf="!levelData?.length" class="d-flex justify-content-center pt-2">
+            <p class="text-danger"><strong>{{errorMsg}}</strong></p>
+          </div>
+        </div>
+        <footer class="d-flex justify-content-end mt-1" *ngIf="levelData?.length">
+          <br />
+          <ngb-pagination class=" pagination " [collectionSize]="queryCount " [(page)]="page " [pageSize]="limit
+                " [maxSize]="5" [ellipses]="false" [boundaryLinks]="true " (pageChange)="loadPage(page) ">
+          </ngb-pagination>
+        </footer>
+      </div>
+    </div>
+  </div>
+</div>

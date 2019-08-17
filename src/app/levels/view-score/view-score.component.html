@@ -1,0 +1,70 @@
+<div class="content-wrapper" ng-app="">
+  <div class="row">
+    <div class="col-md-4">
+      <h3 class="title_font_style">
+        <a [routerLink]="'/levels'">Levels </a>/ {{ this.name }}
+      </h3>
+    </div>
+  </div>
+  <br />
+
+  <div class="card col-md-8">
+    <br>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-5">
+            <h5 class="title_font_style">Speed</h5>
+          </div>
+          <div class="col-md-7">{{levelData_score?.speed}}
+          </div>
+        </div>
+        <hr>
+
+        <div class="row">
+          <div class="col-md-5">
+            <h5 class="title_font_style">Memory</h5>
+          </div>
+          <div class="col-md-7">{{levelData_score?.memory}}
+          </div>
+        </div>
+        <hr>
+
+        <div class="row">
+          <div class="col-md-5">
+            <h5 class="title_font_style">Concentration</h5>
+          </div>
+          <div class="col-md-7">{{levelData_score?.concentration}}
+          </div>
+        </div>
+        <hr>
+
+        <div class="row">
+          <div class="col-md-5">
+            <h5 class="title_font_style">Problem Solving</h5>
+          </div>
+          <div class="col-md-7">{{levelData_score?.problem_solving}}
+          </div>
+        </div>
+        <hr>
+
+        <div class="row">
+          <div class="col-md-5">
+            <h5 class="title_font_style">Accuracy</h5>
+          </div>
+          <div class="col-md-7">{{levelData_score?.accuracy}}
+          </div>
+        </div>
+        <hr>
+
+        <div class="row">
+          <div class="col-md-5">
+            <h5 class="title_font_style">Visual</h5>
+          </div>
+          <div class="col-md-7">{{levelData_score?.visual}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

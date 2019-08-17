@@ -1,0 +1,277 @@
+<div class="content-wrapper">
+  <div class="content-header row">
+    <div class="col-md-6">
+      <h3 class="title_font_style">GAMES</h3>
+      <div class="row breadcrumbs-top">
+        <div class="breadcrumb-wrapper col-12">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a [routerLink]="'/games'">Games </a>
+            </li>
+            <li class="breadcrumb-item active">{{this.title}}</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div><br/>
+  <div class="card">
+    <div class="card-content collpase show">
+      <div class="card-body">
+        <form [formGroup]="createGameForm">
+          <div class="form-group">
+            <div class="form-body">
+              <div class="row">
+                <div class="col-lg-4 col-xl-4 col-md-4 mb-2">
+                  <label>Game Name</label>
+                  <span class="required_mark">*</span>
+                  <input type="text" class="form-control" formControlName="game_name" placeholder="Enter name" required
+                    [ngClass]="{ 'is-invalid': submitted && f.game_name.errors }" />
+                  <div *ngIf="submitted && f.game_name.errors" class="invalid-feedback">
+                    <div *ngIf="f.game_name.errors.required">Game name is required</div>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-xl-4 col-md-4 mb-2">
+                  <label>Level</label>
+                  <span class="required_mark">*</span>
+                  <input id="bank" autocomplete="off" class="form-control typeahead-basic tt-input"
+                    formControlName="level" [typeahead]="levelData" [typeaheadOptionField]="'name'"
+                    (typeaheadOnSelect)="onSelected($event)" (input)="change($event.target.value)"
+                    [typeaheadMinLength]="0" [typeaheadWaitMs]="300" [typeaheadScrollable]="true"
+                    [typeaheadOptionsInScrollableView]="5" (typeaheadNoResults)="typeaheadNoResults($event)"
+                    placeholder="Select Level">
+                  <div class="text-danger" *ngIf="noResult"><strong>No Results Found</strong></div>
+                  <div *ngIf="submitted && f.level.errors" class="invalid-feedback">
+                    <div *ngIf="f.level.errors.required">Level is required</div>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-xl-4 col-md-4 mb-2">
+                  <label style="white-space: nowrap;">Level Position<span class="required_mark">*</span></label>
+
+                  <input type="number" min="1" class="form-control" formControlName="level_position"
+                    placeholder="Enter level position"
+                    [ngClass]="{ 'is-invalid': submitted && f.level_position.errors }" />
+                  <div *ngIf="submitted && f.level_position.errors" class="invalid-feedback">
+                    <div *ngIf="f.level_position.errors.required">Level position is required</div>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-xl-4 col-md-4 mb-2">
+                  <label>Game Time</label>
+                  <span class="required_mark">*</span>
+                  <input type="number" min="0" class="form-control" formControlName="game_time_in_sec"
+                    placeholder="In seconds" [ngClass]="{ 'is-invalid': submitted && f.game_time_in_sec.errors }" />
+                  <div *ngIf="submitted && f.game_time_in_sec.errors" class="invalid-feedback">
+                    <div *ngIf="f.game_time_in_sec.errors.required">Game time is required</div>
+                  </div>
+                  <!-- <label>Difficult</label>
+                  <span class="required_mark">*</span>
+                  <select class="form-control" formControlName="difficult" [ngClass]="{ 'is-invalid': submitted && f.difficult.errors }">
+                    <option value="" disabled selected>Select Difficult</option>
+                    <option *ngFor="let difficultOption of gamedifficult" value="{{difficultOption.value}}">{{difficultOption.name}}</option>
+                  </select>
+                  <div *ngIf="submitted && f.difficult.errors" class="invalid-feedback">
+                    <div *ngIf="f.difficult.errors.required">Difficult is required</div>
+                  </div> -->
+                </div>
+                <div class="col-lg-4 col-xl-4 col-md-4  mb-2">
+                  <label>Question Time</label>
+                  <input type="number" min="0" class="form-control" formControlName="qus_time_in_sec"
+                    placeholder="In seconds" />
+                </div>
+
+                <div class="col-lg-4 col-xl-4 col-md-4 mb-2">
+                  <label>Description</label>
+
+                  <textarea type="text" class="form-control" formControlName="description"
+                    placeholder="Enter description"></textarea>
+                </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-6 mb-2">
+                    <div class="row">
+                      <div class="col-md-8">
+                        <label>Game Icon</label>
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" id="customFile1" formControlName="image_name"
+                            (change)="onImageUpload($event)" accept="image/*">
+                          <div *ngIf="this.game_icon_name; else imageLabel">
+                            <label class="custom-file-label" for="customFile1">
+                              <!-- {{this.game_icon_name} -->
+                              <small class="imgName">
+                                {{ this.game_icon_name.length >imgLabelLimit ? this.game_icon_name.substring(0,imgLabelLimit)+'.....' + imgExt : this.game_icon_name}}
+                              </small>
+                            </label>
+                          </div>
+                          <ng-template #imageLabel>
+                            <label class="custom-file-label" for="customFile1">Choose File</label>
+                          </ng-template>
+                        </div>
+                      </div>
+                      <div class="col-md-4 mb-2" *ngIf="img_url">
+                        <img [src]="img_url" style="height: 70px;" class="img-fluid">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-2">
+                    <div class="row">
+                      <div class="col-md-8">
+                        <label>Background Image</label>
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" id="customFile2" formControlName="bg_image"
+                            (change)="onBgImageUpload($event)" accept="image/*">
+                          <div *ngIf="this.bg_name; else imageLabel">
+                            <label class="custom-file-label" for="customFile1">
+                              <small class="imgName">
+                                <!-- {{this.bg_name}} -->
+                                {{ this.bg_name.length > imgLabelLimit ? this.bg_name.substring(0,imgLabelLimit)+'.....' + imgExt  : this.bg_name}}
+                              </small>
+                            </label>
+                          </div>
+                          <ng-template #imageLabel>
+                            <label class="custom-file-label" for="customFile1">Choose File</label>
+                          </ng-template>
+                        </div>
+                      </div>
+                      <div class="col-md-4 mb-2" *ngIf="bg_url">
+                        <img [src]="bg_url" style="height: 70px;" class="img-fluid">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <h4 class="form-section title_font_style">
+                <i class="fa fa-address-card-o"></i>Instruction</h4>
+              <form [formGroup]="instructionForm">
+                <div class="row">
+                  <div class="col-md-4 mb-2">
+                    <label>Icon</label>
+                    <div class="custom-file">
+                      <input type="file" #img_name class="custom-file-input" id="customFile1"
+                        formControlName="instruction_icon" (change)="onInstructionImageUpload($event)" accept="image/*">
+                      <div *ngIf="this.inst_name; else imageLabel">
+                        <label class="custom-file-label" for="customFile1">
+                          <small class="imgName">
+                            <!-- {{this.inst_name}} -->
+                            {{ this.inst_name.length > imgLabelLimit ? this.inst_name.substring(0,imgLabelLimit)+'.....' + imgExt : this.inst_name}}
+                          </small>
+                        </label>
+                      </div>
+                      <ng-template #imageLabel>
+                        <label class="custom-file-label" for="customFile1">Choose File</label>
+                      </ng-template>
+                    </div>
+                  </div>
+                  <!-- <div class="col-md-3 mb-2" *ngIf="inst_url">
+                  <img [src]="inst_url" style="height: 70px;" class="img-fluid">
+                </div> -->
+                  <div class="col-md-4 mb-2">
+                    <label>Description</label>
+                    <span *ngIf="imgSelected" class="required_mark">*</span>
+                    <textarea type="text" class="form-control" #insDesc formControlName="instruction_description"
+                      placeholder="Enter description"></textarea>
+                  </div>
+
+                  <div class="col-md-4 mb-2">
+                    <div class="add_icon">
+                      <button type="button" [disabled]="!instructionForm.valid" class="btn btn-primary"
+                        (click)="addInstruction(img_name,insDesc.value)">Add</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <div>
+                <div class="row">
+                  <div *ngIf="addArr.length > 0" class="col-md-6" style="height:300px;overflow-y: scroll">
+                    <table class="table table-responsive table-bordered table-striped">
+                      <thead>
+                        <tr>
+                            <th scope="col" style="text-align: center">IMAGE</th>
+                            <th scope="col">DESCRIPTION</th>
+                            <th scope="col" style="text-align: center">DELETE</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let data of addArr;let i=index">
+                          <td scope="row" style="width:10%;text-align: center">
+                            <img [src]="data.imgURL" alt="img" style="height: 70px;width:100px;">
+                          </td>
+                          <td class="break-word" style="width:15%;white-space: nowrap">
+                            {{data.imgDesc.length > 50 ? data.imgDesc.substring(0,100)+'.....' : data.imgDesc}}
+                          </td>
+                          <td style="width:5%;cursor: pointer;text-align: center;font-size: 1.5rem"> <i class="fa fa-trash-o ml-0 text-danger "
+                              aria-hidden="true " (click)="deleteArr(i,data) "></i></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div *ngIf="viewArr.length > 0"class="col-md-6" style="height:300px;overflow-y: scroll">
+                    <table class="table table-responsive table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col" style="text-align: center;">IMAGE</th>
+                                <th scope="col">DESCRIPTION</th>
+                                <th scope="col" style="text-align: center">DELETE</th>
+                            </tr>
+                          </thead>
+                      <tbody>
+                        <tr *ngFor="let data of viewArr;let i=index">
+                          <td style="width: 15%;text-align: center">
+                            <img [src]="data.imgName" alt="img" style="height: 70px;width:100px;">
+                          </td>
+                          <td style="width: 10%;white-space: nowrap">
+                            {{data.imgDesc.length > 50 ? data.imgDesc.substring(0,100)+'.....' : data.imgDesc}}
+                          </td>
+                          <td style="width:5%;cursor: pointer;text-align: center;font-size: 1.5rem"> <i class="fa fa-trash-o ml-0 text-danger "
+                              aria-hidden="true " (click)="updateDeleteArr(i,data) "></i></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <!-- <button class="btn btn-primary" (click)="addInstruction()">Add Instruction</button> -->
+
+
+              <h4 class="form-section title_font_style">
+                <i class="fa fa-address-card-o"></i>Required Score</h4>
+
+              <div class="row" style="white-space: nowrap">
+                <div class="col-md-2 mb-2">
+                  <label>Speed</label>
+                  <input type="number" min="0" class="form-control" formControlName="speed" placeholder="Enter speed" />
+                </div>
+                <div class="col-md-2 mb-2">
+                  <label>Memory</label>
+                  <input type="number" min="0" class="form-control" formControlName="memory"
+                    placeholder="Enter memory" />
+                </div>
+                <div class="col-md-2 mb-2">
+                  <label>Concentration</label>
+                  <input type="number" min="0" class="form-control" formControlName="concentration"
+                    placeholder="Enter concentration" />
+                </div>
+                <div class="col-md-2 mb-2">
+                  <label>Problem Solving</label>
+                  <input type="number" min="0" class="form-control" formControlName="problem_solving"
+                    placeholder="Enter problem solving" />
+                </div>
+                <div class="col-md-2 mb-2">
+                  <label>Accuracy</label>
+                  <input type="number" min="0" class="form-control" formControlName="accuracy"
+                    placeholder="Enter accuracy" />
+                </div>
+                <div class="col-md-2 mb-2">
+                  <label>Visual</label>
+                  <input type="number" min="0" class="form-control" formControlName="visual"
+                    placeholder="Enter visual" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-primary" (click)="onSubmit()">{{this.submitBtn}}</button> &nbsp;&nbsp;
+            <button type="button" class="btn btn-danger" (click)="cancel()">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

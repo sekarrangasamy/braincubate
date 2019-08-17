@@ -1,0 +1,268 @@
+<div class="app-content">
+  <div class="content-wrapper">
+    <div class="content-header row">
+      <div class="content-header-left col-md-6 col-12 mb-2">
+        <h3 class="content-header-title mb-0">Users</h3>
+        <div class="row breadcrumbs-top">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a [routerLink]="'/users'">Users</a>
+              </li>
+              <li class="breadcrumb-item">View
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contet-body">
+      <section id="user-details">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-content">
+                <div class="card-body">
+                  <div class="card-header secret">
+                    <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                    <div class="heading-elements">
+                      <ul class="list-inline mb-0" style="margin-top: 0.3rem !important">
+                        <li class="responsive_email mr-1" style="margin-bottom: 0" *ngIf="userData?.email">
+                          {{userData?.email}}</li>
+                        <li *ngIf="!userData?.email" class="mr-1" style="margin-bottom: 0">-</li>
+                        <li *ngIf="userData?.country"
+                          class="flag-icon flag-icon-{{ flag | lowercase }} flag-icon-squared">
+                        </li>
+                        <li *ngIf="!userData?.country">-</li>
+                        <li *ngIf="userData?.overall_score" class="ml-1 text-info">
+                          <strong>{{userData?.overall_score}}</strong><small class="text-muted"
+                            style="margin-left:1.5px;">points</small>
+                        </li>
+                        <li *ngIf="!userData?.overall_score" class="ml-1 text-info">
+                          <strong>0</strong><small class="text-muted" style="margin-left:1.5px;">points</small>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div
+                      class="col-xl-3 col-lg-6 col-md-6 border-right-blue-grey border-right-lighten-5 clearfix text-nowrap">
+                      <div class="media">
+                        <div class="media-left pr-2">
+                          <div *ngIf="userData?.profile_pic" class="img_container">
+                            <img class="media-object img-xl-user img-fluid img-thumbnail"
+                              src="{{userData.profile_pic}}">
+                          </div>
+                          <div *ngIf="!userData?.profile_pic" class="img_container">
+                            <img class="media-object img-xl-user img-fluid img-thumbnail"
+                              src="../../assets/braincubate-images/no_image_png.png" alt="img">
+                          </div>
+                        </div>
+                        <div class="media-body user_body">
+                          <h6 *ngIf="userData?.name"
+                            class="responsive_user_name font-medium-4 text-bold-500 blue-grey darken-4 pt-0 mb-0">
+                            {{userData?.name}}
+                          </h6>
+                          <h6 *ngIf="!userData?.name" class="text-bold-500 pt-0 mb-0">-</h6>
+                          <div class="details_hide">
+                            <div class="email">
+                              <p class="responsive_email text-wrap" style="margin-bottom: 0" *ngIf="userData?.email">
+                                {{userData?.email}}</p>
+                            </div>
+                            <p *ngIf="!userData?.email" style="margin-bottom: 0">-</p>
+                            <ul class="list-inline mb-0">
+                              <li *ngIf="userData?.country"
+                                class="flag-icon flag-icon-{{ flag | lowercase }} flag-icon-squared">
+                              </li>
+                              <li *ngIf="!userData?.country">-</li>
+                              <li *ngIf="userData?.overall_score" class="ml-1 text-info">
+                                <strong>{{userData?.overall_score}}</strong><small class="text-muted"
+                                  style="margin-left:1.5px;">points</small>
+                              </li>
+                              <li *ngIf="!userData?.overall_score" class="ml-1 text-info">
+                                <strong>0</strong><small class="text-muted" style="margin-left:1.5px;">points</small>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="col-xl-3 col-lg-6 col-md-6 border-right-blue-grey border-right-lighten-5 mt-mo-1 clearfix text-nowrap">
+                      <div class="media">
+                        <div class="media-left pr-2">
+                          <div *ngIf="currentGames?.icon" class="img_container">
+                            <img class="media-object img-xl-game img-fluid img-thumbnail" src="{{currentGames?.icon}}">
+                          </div>
+                          <div *ngIf="!currentGames?.icon" class="img_container">
+                            <img class="media-object img-xl-game img-fluid img-thumbnail"
+                              src="../../assets/braincubate-images/no_image_png.png" alt="img">
+                          </div>
+                        </div>
+                        <div class="media-body mt-0">
+                          <h6 class="responsive_user_name font-medium-2 text-bold-500 blue-grey darken-4">Current Game
+                          </h6>
+                          <div *ngIf="currentGames?.name">
+                            <p class="responsive_game_name content-header-title pt-0 mb-0">
+                              {{currentGames?.name}}
+                            </p>
+                          </div>
+                          <div *ngIf="!currentGames?.name">
+                            <h6 class="text-bold-500 pt-0 mb-0">-</h6>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="col-xl-3 col-lg-6 col-md-6 border-right-blue-grey border-right-lighten-5 clearfix mt-res-1 mt-mo-1 text-nowrap">
+                      <div class="media">
+                        <div class="media-left pr-2">
+                          <div *ngIf="levelData" class="img_container">
+                            <img *ngIf="levelData?.icon" class="media-object img-xl-game img-fluid img-thumbnail"
+                              src="{{levelData.icon}}">
+                          </div>
+                          <div *ngIf="!levelData" class="img_container">
+                            <img *ngIf="!levelData?.icon" class="media-object img-xl-game img-fluid img-thumbnail"
+                              src="../../assets/braincubate-images/no_image_png.png" alt="img">
+                          </div>
+                        </div>
+                        <div class="media-body mt-0">
+                          <h6 class="responsive_user_name font-medium-2 text-bold-500 blue-grey darken-4">Current Level
+                          </h6>
+                          <div *ngIf="levelData?.name">
+                            <p class="content-header-title pt-0 mb-0 responsive_level_name">
+                              {{levelData?.name}}
+                            </p>
+                          </div>
+                          <div *ngIf="!levelData?.name">
+                            <h6 *ngIf="!levelData?.name" class="text-bold-500 pt-0 mb-0">-</h6>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="col-xl-3 col-lg-6 col-md-6 border-right-blue-grey border-right-lighten-5 clearfix mt-res-1 mt-mo-1 text-nowrap">
+                      <div class="row text-wrap text-center custom">
+                        <div class="col-4">
+                          <label class="content-header-title "><strong>Accuracy</strong></label><br>
+                          <strong *ngIf="userData?.score">{{userData?.score.accuracy}}</strong>
+                          <strong *ngIf="!userData?.score">0</strong>
+                        </div>
+                        <div class="col-4">
+                          <label class="content-header-title"><strong>Concentration</strong></label><br>
+                          <strong *ngIf="userData?.score">{{userData?.score.concentration}}</strong>
+                          <strong *ngIf="!userData?.score">0</strong>
+                        </div>
+                        <div class="col-4">
+                          <label class="content-header-title"><strong>Memory</strong></label><br>
+                          <strong *ngIf="userData?.score">{{userData?.score.memory}}</strong>
+                          <strong *ngIf="!userData?.score">0</strong>
+                        </div>
+                      </div>
+                      <div class="row text-wrap text-center custom">
+                        <div class="col-4">
+                          <label class="content-header-title"><strong>ProblemSolving</strong></label><br>
+                          <strong *ngIf="userData?.score">{{userData?.score.problem_solving}}</strong>
+                          <strong *ngIf="!userData?.score">0</strong>
+                        </div>
+                        <div class="col-4">
+                          <label class="content-header-title"><strong>Speed</strong></label><br>
+                          <strong *ngIf="userData?.score">{{userData?.score.speed}}</strong>
+                          <strong *ngIf="!userData?.score">0</strong>
+                        </div>
+                        <div class="col-4">
+                          <label class="content-header-title"><strong>Visual</strong></label><br>
+                          <strong *ngIf="userData?.score">{{userData?.score.visual}}</strong>
+                          <strong *ngIf="!userData?.score">0</strong>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="user_details_2 mt-1">
+        <div class="row">
+          <div class="col-xl-6 col-lg-12 col-md-12">
+            <div class="card" style="height: 468px; zoom: 1;">
+              <div class="card-header">
+                <h4 class="content-header-title" style="text-transform: capitalize">Connected Friends</h4>
+              </div>
+              <div class="card-content p-1" [ngClass]="{'scrollVisisbleUser': scorllVisisble1}">
+                <div *ngIf="!noConnectedFreinds" class="pl-2">
+                  <div id="friends-activity" class="media-list height-400 position-relative ps ps--scrolling-y"
+                    *ngIf="connectedFriends">
+                    <div class="row mb-1" *ngFor="let item of connectedFrnds">
+                      <div class="col-custom-3">
+                        <div class="user-avatar float-left">
+                          <span><img class="avatar avatar-pic-sm rounded-circle" src="{{item.profile_pic}}"
+                              alt="Generic placeholder image">
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-lg-8 col-md-8 col-8 pl-1 pl-mo-1">
+                        <h4 *ngIf="item?.name"
+                          class="user-name resp-name font-medium-4 text-bold-500 blue-grey darken-4">{{item.name}}</h4>
+                        <p *ngIf="item?.email" class="user-name resp-email">{{item.email}}</p>
+                      </div>
+                      <div class="col-lg-3 col-md-3 col-3">
+                        <span class="float-right text-info">
+                          <!-- {{item.overall_score}}
+                          <small class="text-muted" style="margin-left:0.5px">Points</small> -->
+                          <ul class="list-inline mb-0">
+                            <li  class="ml-1 text-info">
+                                <strong>{{item.overall_score}}</strong><small class="text-muted"
+                                  style="margin-left:1.5px;">points</small>
+                              </li>
+                            </ul>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="noConnectedFreinds">
+                  <div id="friends-activity" class="media-list height-400 position-relative ps ps--scrolling-y">
+                    <div class="error_no_message text-danger text-bold-600 font-medium-1" style="text-transform: capitalize">
+                      {{message}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6 col-lg-12 col-md-12">
+            <div class="card" style="height: 468px; zoom: 1;">
+              <div class="card-header">
+                <h4 class="content-header-title ">Achievements</h4>
+              </div>
+              <div class="card-content" [ngClass]="{'scrollVisisbleUser': scorllVisisble}">
+                <div *ngIf="!noAchieveemnts">
+                  <div id="friends-activity" class="media-list height-400 position-relative ps ps--scrolling-y"
+                    *ngIf="achievementData">
+                    <div class="row text-center">
+                      <div style="display: contents">
+                        <div class="col-4" *ngFor="let item of achievementData">
+                          <img src="{{item.icon}}" class="ach-icon  img-thumbnail box-shadow-1 mb-1" alt="img">
+                          <p>{{item.name}}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="noAchieveemnts">
+                  <div id="friends-activity" class="media-list height-400 position-relative ps ps--scrolling-y">
+                    <div class="error_no_message text-danger text-bold-600 font-medium-1" style="text-transform: capitalize">
+                      {{message1}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

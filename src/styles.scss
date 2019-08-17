@@ -1,0 +1,1594 @@
+/* You can add global styles to this file, and also import other style files */
+
+// $font-family: Montserrat;
+
+// @font-face {
+//   font-family: montserrat-medium;
+//   src: url(assets/fonts/Montserrat/Montserrat-Medium.ttf) format("opentype");
+// }
+
+// @font-face {
+//   font-family: montserrat-regular;
+//   src: url(assets/fonts/Montserrat/Montserrat-Regular.ttf) format("opentype");
+// }
+
+// @font-face {
+//   font-family: montserrat-semibold;
+//   src: url(assets/fonts/Montserrat/Montserrat-SemiBold.ttf) format("opentype");
+// }
+@import '~ngx-ui-switch/ui-switch.component.scss';
+
+html body {}
+
+.title_font_style {
+  font-weight: 600;
+}
+
+// regular style toast
+// html body {
+//   background-color: #F3F8FB;
+//   font-family: Montserrat;
+// }
+
+.main-menu.menu-dark .navigation {
+  background: #2A4154;
+}
+
+.main-menu.menu-dark {
+  background: #2A4154;
+}
+
+.main-menu.menu-dark,
+.main-menu.menu-dark .navigation {
+  background: #2A4154 !important;
+}
+
+.main-menu.menu-dark,
+.main-menu.menu-dark .navigation {
+  background: #4d4d4d;
+}
+
+.main-menu.menu-dark .navigation>li.active>a {
+  color: #fff !important;
+  background-color: #1477BB !important;
+  font-weight: normal;
+}
+
+.bg-img {
+  /* Full height */
+  height: 100%;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/*---------------------------------
+Input Icon
+---------------------------------*/
+.navbar-semi-dark .navbar-header {
+  background-color: #FFFFFF !important;
+  border: none;
+  border-right: 1px solid hsl(200, 2%, 78%);
+  height: 56px;
+}
+
+.header-navbar .navbar-header .navbar-brand {
+  padding: 5px 0px;
+}
+
+body.vertical-layout.vertical-menu.menu-collapsed .navbar .navbar-brand {
+  padding: 1px 0px;
+  position: absolute;
+  width: auto;
+  clip: rect(0px, 46px, 48px, 0px);
+  margin-left: -1px;
+  margin-top: 4px;
+}
+
+.custom_left_arrow_style {
+  background-image: linear-gradient(45deg, transparent 50%, #656565 50%), linear-gradient(135deg, #656565 50%, transparent 50%), linear-gradient(to right, #FFFFFF, #FFFFFF);
+  background-position: calc(100% - 17px) calc(1em + 5px), calc(100% - 12px) calc(1em + 5px), 100% 0;
+  background-size: 4px 5px, 5px 4px, 2.5em 3.5em;
+  background-repeat: no-repeat;
+  width: 100% !important;
+}
+
+/*----------------------Side menu style start-------------------------*/
+.cumi-logo {
+  height: auto;
+  width: auto;
+}
+
+.main-menu-content .navigation-main .nav-item .menu-title {
+  // font-family: montserrat-medium;
+  font-size: 16px;
+}
+
+.main-menu.menu-dark .navigation>li.open>a {
+  background-color: #1477BB !important;
+  color: #FFFFFF;
+  height: 50px;
+}
+
+.header-navbar .navbar-container ul.nav li a.dropdown-user-link .avatar {
+  border: 1px solid #1477BB;
+  // font-family: montserrat-medium;
+  color: #FFFFFF;
+}
+
+.navigation-main .nav-item .left-menu-icon-align {
+  height: 20px;
+  width: 21px;
+  margin-right: 15px;
+  margin-left: 5px;
+  color: #FFFFFF;
+  margin-top: -4px;
+}
+
+.main-menu.menu-dark .navigation>li.open {
+  border-left: 4px solid #FFFFFF !important;
+}
+
+.main-menu.menu-dark .navigation>li.active>a {
+  border-left: 4px solid #FFFFFF !important;
+}
+
+/*----------------------Side menu style start-------------------------*/
+
+/* The customcheck */
+.customcheck {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.customcheck input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 24px;
+  width: 25px;
+  border-radius: 2px;
+  border: 2px solid #cfcfcf;
+}
+
+/* When the checkbox is checked, add a blue background */
+.customcheck input:checked~.checkmark {
+  background-color: #1477BB;
+  border-radius: 2px;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.customcheck input:checked~.checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.customcheck .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #6D6D6D;
+  opacity: 1;
+  /* Firefox */
+  font-weight: 500;
+  // font-family: $font-family;
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #6D6D6D;
+  font-weight: 500;
+  // font-family: $font-family;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #6D6D6D;
+  font-weight: 500;
+  // font-family: $font-family;
+}
+
+.f-16 {
+  font-size: 16px;
+  // font-family: $font-family;
+  color: #313131;
+}
+
+.report-switch-align {
+  margin-top: 6px;
+  margin-left: -142px;
+}
+
+.collapse-align {
+  font-weight: 900;
+  font-size: 20px;
+}
+
+.mt-9 {
+  margin-top: 10px;
+}
+
+.mt-30 {
+  margin-top: 30px;
+}
+
+.mt-4 {
+  margin-top: 4px !important;
+}
+
+.mt-10 {
+  margin-top: 15px !important;
+}
+
+.c-bg {
+  background-color: #1477BB;
+  color: #ffffff;
+  border-radius: 3px !important;
+  padding: 0.9rem 0.9rem !important;
+}
+
+.c-white {
+  color: #FFFFFF !important;
+  font-weight: 900;
+}
+
+.bar-tooltip {
+  text-transform: capitalize;
+  font-weight: 600;
+}
+
+.stg-tooltip {
+  text-transform: capitalize;
+  font-weight: 600;
+}
+
+/*----------------------body content style start-------------------------*/
+.card {
+  margin-bottom: 0.875rem !important;
+}
+
+.pl-0 {
+  padding-left: 0px;
+  padding-right: 6px;
+}
+
+.pr-0 {
+  padding-right: 0px;
+  padding-left: 6px;
+}
+
+.content-wrapper .f-16 {
+  font-size: 16px;
+  // font-family: $font-family;
+  color: #313131;
+}
+
+.custom-select {
+  color: #6D6D6D;
+  font-weight: 500;
+  // font-family: $font-family;
+}
+
+.page-title {
+  fill: #313131;
+  // font-family: montserrat-regular;
+  font-weight: 900;
+}
+
+.highcharts-title {
+  fill: #313131;
+  // font-family: $font-family;
+  text-transform: capitalize;
+  font-weight: 900;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.custom-file-label {
+  // font-family: $font-family;
+  white-space: nowrap;
+}
+
+.btn-color {
+  background-color: #1477BB;
+  color: #FFFFFF;
+  font-weight: 900;
+  // font-family: $font-family;
+}
+
+.switch-align {
+  border: 1px solid #cdcdcd;
+  border-radius: 5px;
+}
+
+.calendar-red {
+  color: #F15059;
+}
+
+.bg-blu {
+  background-color: #1477BB;
+}
+
+.calendar-green {
+  color: #1477BB;
+}
+
+.theme-green .bs-datepicker-body table td.week span {
+  color: #1477BB;
+}
+
+.theme-green .bs-datepicker-body table td span.selected,
+.theme-green .bs-datepicker-body table td.selected span,
+.theme-green .bs-datepicker-body table td span[class*="select-"]:after,
+.theme-green .bs-datepicker-body table td[class*="select-"] span:after {
+  background-color: #1477BB;
+}
+
+.theme-green .bs-datepicker-head {
+  background-color: #1477BB;
+}
+
+.switch-font-align {
+  margin-top: 8px;
+  margin-right: 5px;
+}
+
+.date-placeholder {
+  // font-family: $font-family;
+  font-size: 16px;
+  color: #6D6D6D;
+  font-weight: 500;
+}
+
+.bs-datepicker-container {
+  // font-family: montserrat-regular;
+}
+
+.border-0 {
+  border: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+.btn-center {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.btn-center :hover {
+  text-align: center;
+  margin-bottom: 20px;
+  background-color: #1477BB;
+  color: #FFFFFF;
+}
+
+.btn-social.btn-sm,
+.btn-sm.btn-social-icon {
+  padding-left: 3.5rem;
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+  color: #2178ba;
+}
+
+// Multiselect dropdown start
+
+.card-content .multiselect-dropdown .dropdown-btn {
+  border: 1px solid #BABFC7 !important;
+  padding: 9px 12px !important;
+  // font-family: $font-family;
+  color: #6D6D6D !important;
+}
+
+.card-content .multiselect-dropdown .dropdown-btn .dropdown-down {
+  display: inline-block;
+  top: 10px;
+  width: 0;
+  height: 0;
+  border-top: 5px solid #6D6D6D !important;
+  border-left: 4px solid transparent !important;
+  border-right: 4px solid transparent !important;
+}
+
+.card-content .multiselect-dropdown .dropdown-btn .dropdown-up {
+  border-bottom: 5px solid #adadad !important;
+  border-left: 4px solid transparent !important;
+  border-right: 4px solid transparent !important;
+}
+
+.card-content .dropdown-list {
+  // font-family: $font-family;
+}
+
+// Multiselect dropdown end
+
+// radio button
+[type="radio"]:checked,
+[type="radio"]:not(:checked) {
+  position: absolute;
+  left: -9999px;
+}
+
+[type="radio"]:checked+label,
+[type="radio"]:not(:checked)+label {
+  position: relative;
+  padding-left: 28px;
+  cursor: pointer;
+  line-height: 20px;
+  display: inline-block;
+  color: #666;
+}
+
+[type="radio"]:checked+label:before,
+[type="radio"]:not(:checked)+label:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #a4a4a4;
+  border-radius: 100%;
+  background: #fff;
+}
+
+[type="radio"]:checked+label:after,
+[type="radio"]:not(:checked)+label:after {
+  content: '';
+  width: 12px;
+  height: 12px;
+  background: #F87DA9;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  border-radius: 100%;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+[type="radio"]:not(:checked)+label:after {
+  opacity: 0;
+  -webkit-transform: scale(0);
+  transform: scale(0);
+}
+
+[type="radio"]:checked+label:after {
+  opacity: 1;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+
+/*----------------------body content style end-------------------------*/
+
+
+@mixin can-toggle-branding($can-toggle-off-color: #FFFFFF,
+  $can-toggle-on-color: #FFFFFF,
+  $can-toggle-inactive-text: #1477BB,
+  $can-toggle-transition: cubic-bezier(0, 1, 0.5, 1)) {
+
+  input[type="checkbox"] {
+
+    &[disabled]~label {
+      color: rgba($can-toggle-off-color, 0.5);
+    }
+
+    &:focus~label,
+    &:hover~label {
+      .can-toggle__switch {
+        background-color: $can-toggle-off-color;
+
+        &:after {
+          color: darken($can-toggle-off-color, 10%);
+        }
+      }
+    }
+
+    &:hover~label {
+      color: darken($can-toggle-off-color, 5%);
+    }
+
+    &:checked {
+      ~label {
+        &:hover {
+          color: darken($can-toggle-on-color, 3%);
+        }
+
+        .can-toggle__switch {
+          background-color: lighten($can-toggle-on-color, 5%);
+
+          &:after {
+            color: darken($can-toggle-on-color, 5%);
+          }
+        }
+      }
+
+      &:focus,
+      &:hover {
+        ~label {
+          .can-toggle__switch {
+            background-color: $can-toggle-on-color;
+
+            &:after {
+              color: darken($can-toggle-on-color, 10%);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  label {
+
+    .can-toggle__label-text {
+      flex: 1;
+    }
+
+    .can-toggle__switch {
+      transition: background-color 0.3s $can-toggle-transition;
+      background: lighten($can-toggle-off-color, 5%);
+
+      &:before {
+        color: $can-toggle-inactive-text;
+      }
+
+      &:after {
+        // Autoprefixer choked here, so making the prefixes explicit
+        -webkit-transition: -webkit-transform 0.3s $can-toggle-transition;
+        transition: transform 0.3s $can-toggle-transition;
+        color: $can-toggle-off-color;
+      }
+    }
+
+  }
+}
+
+.can-toggle label .can-toggle__switch {
+  transition: background-color 0.3s cubic-bezier(0, 1, 0.5, 1);
+  background: white;
+  border: 1px solid #1477BB !important;
+}
+
+@mixin can-toggle-appearance ($can-toggle-width: 204px,
+  $can-toggle-height: 36px,
+  $can-toggle-border-radius: 4px,
+  $can-toggle-offset: 0px,
+  $can-toggle-label-font-size: 14px,
+  $can-toggle-switch-font-size: 12px,
+  $can-toggle-shadow: 0 3px 3px rgba(black, 0.4)) {
+  $can-toggle-switch-width: $can-toggle-width/2;
+
+  input[type="checkbox"] {
+
+    &:focus~label,
+    &:hover~label {
+      .can-toggle__switch {
+        &:after {
+          box-shadow: $can-toggle-shadow;
+        }
+      }
+    }
+
+    &:checked {
+      ~label {
+        .can-toggle__switch {
+          &:after {
+            transform: translate3d($can-toggle-width - ($can-toggle-switch-width + $can-toggle-offset), 0, 0);
+          }
+        }
+      }
+
+      &:focus,
+      &:hover {
+        ~label {
+          .can-toggle__switch {
+            &:after {
+              box-shadow: $can-toggle-shadow;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  label {
+    font-size: $can-toggle-label-font-size;
+
+    .can-toggle__switch {
+      height: $can-toggle-height;
+      flex: 0 0 $can-toggle-width;
+      border-radius: $can-toggle-border-radius;
+
+      &:before {
+        left: $can-toggle-width/2;
+        font-size: $can-toggle-switch-font-size;
+        line-height: $can-toggle-height;
+        width: $can-toggle-width/2;
+        padding: 0 12px;
+      }
+
+      &:after {
+        top: $can-toggle-offset;
+        left: $can-toggle-offset;
+        border-radius: $can-toggle-border-radius/2;
+        width: $can-toggle-switch-width - $can-toggle-offset !important;
+        line-height: $can-toggle-height;
+        font-size: $can-toggle-switch-font-size;
+      }
+
+      &:hover {
+        &:after {
+          box-shadow: $can-toggle-shadow;
+        }
+      }
+    }
+  }
+}
+
+
+
+.can-toggle {
+  position: relative;
+
+  *,
+  *:before,
+  *:after {
+    box-sizing: border-box;
+  }
+
+  //overflow: hidden;
+
+  input[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    &[disabled]~label {
+      pointer-events: none;
+
+      .can-toggle__switch {
+        opacity: 0.4;
+      }
+    }
+
+    &:checked {
+      ~label {
+
+        .can-toggle__switch {
+
+          &:before {
+            content: attr(data-unchecked);
+            left: 0;
+          }
+
+          &:after {
+            content: attr(data-checked);
+          }
+        }
+      }
+
+      &:focus,
+      &:hover {
+        ~label {}
+      }
+    }
+  }
+
+  label {
+    user-select: none;
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .can-toggle__label-text {
+      flex: 1;
+      padding-left: 32px;
+    }
+
+    .can-toggle__switch {
+      position: relative;
+
+      &:before {
+        content: attr(data-checked);
+        position: absolute;
+        top: 0;
+        text-align: center;
+      }
+
+      &:after {
+        content: attr(data-unchecked);
+        position: absolute;
+        z-index: 5;
+        text-align: center;
+        background: #1477BB;
+        flex: 0 0 190px;
+        width: 100%;
+        transform: translate3d(0, 0, 0);
+      }
+    }
+  }
+
+  // Default values for .can-toggle class
+  @include can-toggle-branding;
+  @include can-toggle-appearance;
+
+  // Create toggles of different sizes by overriding the can-toggle-appearance mixin defaults
+  &.can-toggle--size-small {
+    @include can-toggle-appearance (90px, // Toggle width
+      28px, // Toggle height
+      2px, // Toggle border radius
+      1px, // Offset (distance btw switch and box)
+      13px, // Label font size
+      10px, // Switch font size
+      0 2px 2px rgba(black, 0.4) // Switch shadow on hover/focus
+    );
+  }
+
+  &.can-toggle--size-large {
+    @include can-toggle-appearance (228px, // Toggle width
+      36px, // Toggle height
+      0px, // Toggle border radius
+      0px, // Offset (distance btw switch and box)
+      14px, // Label font size
+      14px, // Switch font size
+      0 4px 4px rgba(black, 0.4) // Switch shadow on hover/focus
+    );
+  }
+
+  // Or re-brand the toggle for different applications
+  &.demo-rebrand-1 {
+    @include can-toggle-branding (#b53e74, // Off state color
+      #3d9c72, // On state color
+      rgba(white, 0.6), // Off state text color
+      ease-in-out // Transition timing function
+    );
+  }
+
+  &.demo-rebrand-2 {
+    @include can-toggle-branding (#444, // Off state color
+      #69be28, // On state color
+      rgba(white, 0.7), // Off state text color
+      cubic-bezier(0.860, 0.000, 0.070, 1.000) // Transition timing function
+    );
+    @include can-toggle-appearance (120px, // Toggle width
+      60px, // Toggle height
+      60px, // Toggle border radius
+      2px, // Offset (distance btw switch and box)
+      13px, // Label font size
+      13px, // Switch font size
+      0 4px 4px rgba(black, 0.4) // Switch shadow on hover/focus
+    );
+  }
+
+}
+
+.can-toggle.can-toggle--size-large label .can-toggle__switch {
+  height: 38px;
+  flex: 0 0 230px;
+  border-radius: 4px;
+}
+
+.th-inner {
+  padding: 8px;
+  line-height: 24px;
+  vertical-align: top;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.f-14 {
+  font-size: 14px;
+  // font-family: montserrat-medium;
+  color: #313131;
+}
+
+.fr {
+  float: right;
+  margin-top: -35px;
+}
+
+.table th,
+.table td {
+  padding: 0.75rem 0.25rem !important;
+}
+
+.table td img {
+  height: 60px !important;
+  border-radius: unset;
+}
+
+#logo_image {
+  position: absolute;
+  bottom: 5px;
+  left: 15px;
+  width: 100%;
+}
+
+.icon {
+  height: 35px;
+}
+
+//required
+.required_mark {
+  color: crimson;
+}
+
+//Toggle active and inactive button 
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 14px;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 8px;
+  left: -11px;
+  right: 7px;
+  bottom: -6px;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 0px;
+  bottom: 0px;
+  top: -5px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 8px;
+  left: -7px;
+  right: 11px;
+  bottom: -6px;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked+.slider {
+  background-color: rgb(33, 243, 173);
+}
+
+input:focus+.slider {
+  box-shadow: 0 0 1px rgb(33, 243, 173);
+}
+
+input:checked+.slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+// footer style
+.footer_style {
+  height: 80px;
+  text-align: center;
+}
+
+// Data Not Found
+.data_not_found {
+  position: absolute;
+  margin-left: 437px;
+  margin-right: 420px;
+  margin-top: 20px;
+}
+
+.viewImg {
+  height: 4rem;
+  width: 6rem;
+}
+
+.input-group-prepend {
+  height: 33px;
+}
+
+select#select {
+  height: 2.5rem;
+}
+
+.error_no_message {
+  text-align: center;
+  padding: 127px;
+}
+
+/*-------------------------------Achevements-----------------------------------------*/
+.parentScroll {
+  width: 100%;
+  height: 130px;
+}
+
+.childScroll {
+  height: 100%;
+  overflow-y: scroll;
+  // overflow-x: scroll;
+
+}
+
+// table th,
+// table td {
+//   // text-align: center;
+//   white-space: nowrap;
+// }
+
+// table th {
+//   text-transform: uppercase;
+//   // font-family: $font-family;
+// }
+
+.table {
+  width: 100%;
+  white-space: nowrap;
+}
+
+
+
+.sub_heading {
+  text-transform: none;
+}
+
+td.break-word {
+  white-space: normal;
+  width: 20%;
+}
+
+.createIcon {
+  line-height: 20px;
+  font-size: 20px;
+  font-weight: bolder;
+}
+
+.createBtn i {
+  float: left;
+  margin-right: 5px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.image-upload>input {
+  visibility: hidden;
+}
+
+.upload {
+  height: 12rem;
+  width: 24rem;
+}
+
+.upload:hover {
+  cursor: pointer;
+}
+
+.preview-modal {
+  height: 10rem;
+  width: 16rem;
+}
+
+.preview {
+  height: 15rem;
+  width: 27rem;
+}
+
+.required:after {
+  color: #d00;
+  content: "*";
+  position: absolute;
+  margin-left: 5px;
+  margin-top: -8px;
+  top: 7px;
+}
+
+.card-header-bg {
+  background-color: #1973C1;
+  color: #fff;
+}
+
+//Drag and Drop for Modal Box
+.dropzone-modal {
+  height: 131px;
+  width: 184px;
+  border: 2px dashed #00B5B8;
+  background: #F5F7FA;
+}
+
+.dropzone-modal .dz-message-modal {
+  font-size: 1.2rem;
+  position: absolute;
+  top: 36%;
+  left: 1px;
+  width: 100%;
+  height: 300px;
+  margin-top: -30px;
+  color: #00B5B8;
+  text-align: center;
+}
+
+.ft-download-modal {
+  font-size: 68px;
+  position: absolute;
+  top: 35px;
+  width: 80px;
+  height: 80px;
+  left: 50%;
+  margin-left: -40px;
+  line-height: 1;
+  color: #00B5B8;
+  display: inline-block;
+  z-index: 2;
+  text-indent: 0;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.scrollVisisble {
+  overflow-y: scroll;
+  height: 200px;
+}
+
+.scrollNotVisisble {
+  overflow-y: hidden;
+}
+
+.scrollVisisbleUser {
+  overflow-y: scroll;
+}
+
+.scrollNotVisisbleUser {
+  overflow-y: hidden;
+}
+
+.scrollNotVisisbleUserLimit {
+  overflow-y: hidden;
+  height: 70px;
+}
+
+.announcementScroll {
+  overflow-y: scroll;
+  height: 429px;
+}
+
+//Drag and Drop
+.dropzone {
+  height: 208px;
+  width: 401px;
+  border: 2px dashed #00B5B8;
+  background: #F5F7FA;
+}
+
+.dropzone .dz-message {
+  font-size: 1.8rem;
+  position: absolute;
+  top: 36%;
+  left: 1px;
+  width: 100%;
+  height: 300px;
+  margin-top: -30px;
+  color: #00B5B8;
+  text-align: center;
+}
+
+.ft-download-normal {
+  font-size: 90px;
+  position: absolute;
+  top: 52px;
+  width: 80px;
+  height: 80px;
+  left: 49%;
+  margin-left: -40px;
+  line-height: 1;
+  color: #00B5B8;
+  display: inline-block;
+  z-index: 2;
+  text-indent: 0;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.user_card {
+  overflow-y: scroll;
+  height: 285px;
+  // font-family: $font-family;
+}
+
+.profile_pic {
+  height: 95px !important;
+}
+
+
+.game-card.card-body {
+  padding-top: 0rem;
+}
+
+.level-card.card-body {
+  padding-top: 0rem;
+}
+
+.game_icon {
+  height: 5rem;
+  width: 5rem;
+}
+
+.level_icon {
+  height: 5rem;
+  width: 6rem;
+}
+
+.ach-icon {
+  height: 80px;
+  width: 80px;
+}
+
+// .img-xl-user{
+//     position: relative;
+//     float: left;
+//     width: 100px;
+//     height: 100px;
+//     background-position: 50% 50%;
+//     background-repeat: no-repeat;
+//     background-size: cover;
+//     object-fit: cover;
+//     padding: 0;
+// }
+
+// .img-xl-game {
+//     position: relative;
+//     float: left;
+//     width: 100px;
+//     height: 100px;
+//     background-position: 50% 50%;
+//     background-repeat: no-repeat;
+//     background-size: cover;
+//     object-fit: cover;
+//     padding: 0;
+// }
+
+.img_container {
+  display: block;
+  width: 67px;
+  height: 77px;
+}
+
+.img_container img {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+
+#custom-scroll::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #F5F5F5;
+}
+
+#custom-scroll::-webkit-scrollbar {
+  width: 12px;
+  background-color: #F5F5F5;
+}
+
+#custom-scroll::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+  background-color: #D62929;
+}
+
+.flag-icon.flag-icon-squared {
+  width: 1em;
+  font-size: 2rem;
+}
+
+.profile_pic_card.card-body {
+  padding: 0rem;
+}
+
+.sub_table {
+  padding: 0.75rem 1.25rem !important;
+}
+
+.edit_score_text_box {
+  width: 45px !important;
+}
+
+.add_icon {
+  display: flex;
+  justify-content: center;
+  margin-top: 36px;
+}
+
+.dropdown-menu {
+  min-width: 90% !important;
+}
+
+typeahead-container {
+  width: 91% !important;
+}
+
+.media-body.media-middle {
+  vertical-align: middle;
+  padding-top: 19px;
+}
+
+.user-avatar img{
+  width:70px
+}
+.round-im{
+  display: block;
+  width: 40px;
+  height: 40px;
+  background: #E6E7ED;
+  text-align: center;
+  align-content: center;
+  align-items: center;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+}
+
+.round-im img{
+  max-height: 100%;
+   max-width: 100%;
+
+}
+
+.table.middile-align td{
+  vertical-align: middle;
+  padding-top: 19px;
+}
+
+.card-custom-body {
+  flex: 1 1 auto;
+}
+
+span.user-name {
+  display: inline-block;
+  margin-bottom: .4rem;
+  margin-left: 0.9rem;
+}
+
+h4.user-name {
+  margin-bottom: 0rem;
+}
+
+.col-custom-3 {
+  flex: 0 0 25%;
+  max-width: 7%;
+}
+
+.switch.checked {
+  background: #1973C1 !important;
+}
+
+.selected-box {
+  color: #ffff !important;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.text-selected {
+  content: "\f067";
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.text-not-selected {
+  content: "\f00d";
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (max-width: 576px) {
+
+
+  .float-md-right {
+    padding-top: 8px;
+  }
+
+  .card-text.res-text {
+    font-size: 15px;
+  }
+
+  .title_font_style {
+    font-weight: 500;
+  }
+
+  .mobile-view-user {
+    text-align: center;
+  }
+
+  // .responsive_email {
+  //   font-size:0.9vw
+  // }
+
+  .custom-sm-center {
+    text-align: center
+  }
+
+  .responsive_game_name {
+    font-size: 1rem !important;
+  }
+
+  .responsive_level_name {
+    font-size: 1rem !important;
+  }
+
+  .mt-mo-1 {
+    padding-top: 10px;
+  }
+
+  .custom {
+    font-size: 2.9vw;
+  }
+
+  .avatar-pic-sm {
+    width: 38px !important;
+    height: 40px !important;
+  }
+
+  .resp-name {
+    font-size: 4.9vw !important;
+  }
+
+  .resp-email {
+    font-size: 2.8vw !important;
+  }
+
+  .pl-mo-1 {
+    padding-left: 2rem !important;
+  }
+}
+
+// @media (min-width: 576px) {
+//  .mt-sm-1 {
+//     padding-top: 1rem;
+//   }
+
+// }
+
+@media screen and (max-width:768px) {
+
+  .normal-cb{
+    display: none;
+  }
+
+  .mt-mo-1 {
+    padding-top: 10px;
+  }
+
+  .img-xl {
+    position: relative;
+    float: left;
+    width: 100px;
+    height: 100px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    object-fit: cover;
+    padding: 0;
+  }
+
+  .img-xl-game {
+    position: relative;
+    float: left;
+    width: 100px;
+    height: 100px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    object-fit: cover;
+    padding: 0;
+  }
+
+  .details_hide {
+    display: none;
+  }
+
+  div#friends-activity {
+    padding: 13px;
+  }
+
+  .responsive_user_name {
+    padding-top: 10px !important;
+  }
+
+
+}
+
+.responsive_game_name {
+  font-weight: 600;
+}
+
+.responsive_level_name {
+  font-weight: 600;
+}
+
+.responsive_user_name {
+  font-weight: 600;
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .mobile-cp{
+    display:none;
+  }
+  small.imgName {
+    font-size: 10px;
+  }
+
+  .search-box {
+    padding-right: 13px;
+  }
+
+  .responsive_email {
+    font-size: 1rem;
+  }
+
+  .responsive_game_name {
+    font-size: 1rem !important;
+  }
+
+  .responsive_level_name {
+    font-size: 1rem !important;
+  }
+
+  .mt-res-1 {
+    padding-top: 1vw;
+  }
+
+  .card-header.secret {
+    display: none;
+  }
+
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+
+  small.imgName {
+    font-size: 9px;
+  }
+
+  .responsive_email {
+    font-size: 1rem;
+  }
+
+  .responsive_game_name {
+    font-size: 1rem !important;
+  }
+
+  .responsive_level_name {
+    font-size: 1rem !important;
+  }
+
+  .mt-res-1 {
+    padding-top: 1vw;
+  }
+
+  .card-header.secret {
+    display: none;
+  }
+
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+
+  small.imgName {
+    font-size: 14px;
+  }
+
+  .responsive_email {
+    font-size: 0.8vw;
+
+  }
+
+  .custom {
+    font-size: 0.7vw;
+  }
+
+  .mt-res-1 {
+    padding-top: 0;
+  }
+
+  .mt-sm-1 {
+    padding-top: 0px;
+  }
+
+  .card-header.secret {
+    display: none;
+  }
+
+  .user_body {
+    max-width: 80%;
+  }
+
+  .email {
+    white-space: nowrap;
+  }
+
+  .pl-mo-1 {
+    padding-left: 2rem !important;
+  }
+
+}
+
+.avatar-pic-sm {
+  width: 51px;
+}
+
+[data-toggle="collapse"] :not(.collapsed).right.fa:before {
+  content: "\f068";
+
+}
+
+[data-toggle="collapse"].collapsed .right.fa:before {
+  content: "\f067";
+
+}
+
+.right-icon {
+  float: right;
+  color: white;
+  line-height: 2rem;
+  vertical-align: middle;
+  font-size: 1.5rem;
+  font-weight: bolder;
+
+}

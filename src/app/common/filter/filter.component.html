@@ -1,0 +1,184 @@
+<form id="filterPanel" name="braincubateFilterForm" novalidate #braincubateFilterForm="ngForm" class="form">
+	<div class="row">
+		<section id="prerequisite" class="card" style="width: 100%;">
+			<a data-action="collapse">
+				<div class="card-header c-bg">
+					<label class="f-16 c-white filter-white">
+						<i class="fa fa-filter fa-lg"></i> Filters: </label>
+					<div class="heading-elements">
+						<ul class="list-inline mb-0 mt-4">
+							<li>
+								<i class="ft-plus collapse-align"></i>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</a>
+			<div class="card-content collapse">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-md-12 form-group">
+							<div class="row">
+								<div class="col-lg-2" *ngIf="groupByOption">
+									<label class="f-16">
+										View By
+									</label>
+									<select class="custom-select form-control-md ng-untouched ng-pristine custom_left_arrow_style ng-invalid" name="group_by"
+									 [(ngModel)]="filterValuesObject.group_by" (ngModelChange)="onChange()">
+										<option value="null" disabled>Select View By</option>
+										<option *ngFor="let obj of groupByDropDown" [ngValue]="obj.value">{{obj.name}}</option>
+									</select>
+								</div>
+								<div class="col-lg-2" *ngIf="groupByOption">
+									<label class="f-16">
+										Duration
+									</label>
+									<select [disabled]="filterValuesObject.group_by != 'day'" class="custom-select form-control-md ng-untouched ng-pristine custom_left_arrow_style ng-invalid"
+									 name="sub_group_by" [(ngModel)]="filterValuesObject.sub_group_by" (ngModelChange)="onChange()">
+										<option value="null" disabled selected>Select Duration</option>
+										<option value="day">Day</option>
+										<option value="week">Week</option>
+										<option value="month">Month</option>
+									</select>
+								</div>
+								<div class="col-lg-2">
+									<label class="f-16">From</label>
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text calendar-green" id="basic-addon1">
+												<i class="fa fa-calendar"></i>
+											</span>
+										</div>
+										<input type="text" class="form-control form-control-lg date-placeholder p-1" #dp="bsDatepicker" name="start_date" bsDatepicker
+										 [bsValue]="filterValuesObject.start_date" [bsConfig]="{ dateInputFormat: 'DD-MMM-YY'}" [(ngModel)]="filterValuesObject.start_date"
+										 [minDate]="minDate" [maxDate]="filterValuesObject.end_date" (ngModelChange)="onFromDateChange(filterValuesObject.start_date)">
+									</div>
+								</div>
+								<div class="col-lg-2">
+									<label class="f-16">To</label>
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text calendar-red" id="basic-addon1">
+												<i class="fa fa-calendar"></i>
+											</span>
+										</div>
+										<input type="text" class="form-control form-control-lg date-placeholder p-1" #dp="bsDatepicker" name="end_date" bsDatepicker
+										 [(bsValue)]="filterValuesObject.end_date" [bsConfig]="{ dateInputFormat: 'DD-MMM-YY'}" [(ngModel)]="filterValuesObject.end_date"
+										 (ngModelChange)="onToDateChange(filterValuesObject.end_date)" [minDate]="filterValuesObject.start_date" [maxDate]="maxDate">
+									</div>
+								</div>
+								<div [ngClass]="groupByOption ? 'col-lg-2' : 'col-lg-4'">
+									<label class="f-16">Material
+									</label>
+									<ng-multiselect-dropdown [disabled]="(filterValuesObject.group_by == 'material') || (productionDropDownValue == true)" name="material"
+									 [placeholder]="'Select All'" [data]="defectArr" [settings]="defectDropdownSettings" [(ngModel)]="filterValuesObject.material"
+									 (onSelect)="onChange()" (onSelectAll)="onChange()" (onDeSelect)="onChange()" (onFilterChange)="onChange()">
+									</ng-multiselect-dropdown>
+								</div>
+								<div [ngClass]="groupByOption ? 'col-lg-2' : 'col-lg-4'">
+									<label class="f-16">
+										Loss Classification
+									</label>
+									<ng-multiselect-dropdown [disabled]="(filterValuesObject.group_by == 'loss_classification') || (productionDropDownValue == true)"
+									 [placeholder]="'Select All'" [data]="lossClassficationArr" name="loss_classification" [settings]="dropdownSettings"
+									 [(ngModel)]="filterValuesObject.loss_classification" (onSelect)="onChange()" (onSelectAll)="onChange()" (onDeSelect)="onChange()"
+									 (onFilterChange)="onChange()">
+									</ng-multiselect-dropdown>
+								</div>
+								<div class="col-lg-4 mt-10">
+									<label class="f-16">
+										Stage
+									</label>
+									<ng-multiselect-dropdown [disabled]="filterValuesObject.group_by == 'stage'" [placeholder]="'Select All'" [data]="stageArr"
+									 [settings]="stageDropdownSettings" name="stage" [(ngModel)]="filterValuesObject.stage" (onSelect)="onChange()" (onSelectAll)="onChange()"
+									 (onDeSelect)="onChange()" (onFilterChange)="onChange()">
+									</ng-multiselect-dropdown>
+								</div>
+								<div class="col-lg-4 mt-10">
+									<label class="f-16">
+										Machine
+									</label>
+									<ng-multiselect-dropdown [disabled]="filterValuesObject.group_by == 'machine'" [placeholder]="'Select All'" [data]="machineArr"
+									 [settings]="machineDropdownSettings" name="machine" [(ngModel)]="filterValuesObject.machine" (onSelect)="onChange()"
+									 (onSelectAll)="onChange()" (onDeSelect)="onChange()" (onFilterChange)="onChange()">
+									</ng-multiselect-dropdown>
+								</div>
+								<div class="col-lg-4 mt-10">
+									<label class="f-16">
+										Customer
+									</label>
+									<ng-multiselect-dropdown [disabled]="filterValuesObject.group_by == 'customer_name'" [placeholder]="'Select All'" [data]="customerArr"
+									 [settings]="customerDropdownSettings" name="customer_name" [(ngModel)]="filterValuesObject.customer_name" (onSelect)="onChange()"
+									 (onSelectAll)="onChange()" (onDeSelect)="onChange()" (onFilterChange)="onChange()">
+									</ng-multiselect-dropdown>
+								</div>
+								<div *ngIf="productDropdown == true" [ngClass]="groupByOption ? 'col-lg-4 mt-10' : 'col-lg-4 mt-10'">
+									<label class="f-16">
+										Product
+									</label>
+									<ng-multiselect-dropdown [disabled]="(filterValuesObject.group_by == 'item_code') || (heatMapOption == false)" [placeholder]="'Select All'"
+									 [data]="productArr" [settings]="productDropdownSettings" name="item_code" [(ngModel)]="filterValuesObject.item_code"
+									 (onSelect)="onChange()" (onSelectAll)="onChange()" (onDeSelect)="onChange()" (onFilterChange)="onChange()">
+									</ng-multiselect-dropdown>
+								</div>
+								<div *ngIf="productDropdown == false" [ngClass]="groupByOption ? 'col-lg-4 mt-10' : 'col-lg-4 mt-10'">
+									<label class="f-16">
+										Product
+									</label>
+									<ng-multiselect-dropdown [disabled]="(filterValuesObject.group_by == 'item_description') || (heatMapOption == false)" [placeholder]="'Select All'"
+									 [data]="productDescArr" [settings]="productDescDropdownSettings" name="item_description" [(ngModel)]="filterValuesObject.item_description"
+									 (onSelect)="onChange()" (onSelectAll)="onChange()" (onDeSelect)="onChange()" (onFilterChange)="onChange()">
+									</ng-multiselect-dropdown>
+								</div>
+								<div class="col-lg-2 mt-10">
+									<br />
+									<div>
+										<input type="radio" [disabled]="heatMapOption == false" class="custom-control-input" name="prod_desc" id="by_code" [checked]="productDropdown === true"
+										 (change)="onProductDropdownChange(true)">
+										<label class="mr-30 f-14" for="by_code">By Code</label>
+									</div>
+									<div>
+										<input type="radio" [disabled]="heatMapOption == false" class="custom-control-input" name="prod_desc" id="by_description"
+										 [checked]="productDropdown === false" (change)="onProductDropdownChange(false)">
+										<label class="mr-30 f-14" for="by_description">By Description</label>
+									</div>
+								</div>
+								<div *ngIf="erpCodeDropdown == true" [ngClass]="groupByOption ? 'col-lg-4 mt-10' : 'col-lg-4 mt-10'">
+									<label class="f-16">
+										Loss
+									</label>
+									<ng-multiselect-dropdown [disabled]="(filterValuesObject.group_by == 'erp_code') || (filterValuesObject.group_by == 'description') || (productionDropDownValue == true)"
+									 [placeholder]="'Select All'" [data]="erpCodeArr" [settings]="erpCodeDropdownSettings" name="erp_code" [(ngModel)]="filterValuesObject.erp_code"
+									 (onSelect)="onChange()" (onSelectAll)="onChange()" (onDeSelect)="onChange()" (onFilterChange)="onChange()">
+									</ng-multiselect-dropdown>
+								</div>
+								<div *ngIf="erpCodeDropdown == false" [ngClass]="groupByOption ? 'col-lg-4 mt-10' : 'col-lg-4 mt-10'">
+									<label class="f-16">
+										Loss
+									</label>
+									<ng-multiselect-dropdown [disabled]="(filterValuesObject.group_by == 'description') || (filterValuesObject.group_by == 'description') || (productionDropDownValue == true)"
+									 [placeholder]="'Select All'" [data]="erpDescArr" [settings]="erpDescDropdownSettings" name="description" [(ngModel)]="filterValuesObject.description"
+									 (onSelect)="onChange()" (onSelectAll)="onChange()" (onDeSelect)="onChange()" (onFilterChange)="onChange()">
+									</ng-multiselect-dropdown>
+								</div>
+								<div class="col-lg-2 mt-10">
+									<br />
+									<div>
+										<input type="radio" class="custom-control-input" [disabled]="(productionDropDownValue == true)" name="erp_desc" id="erp_code"
+										 [checked]="erpCodeDropdown === true" (change)="onerpCodeDropdownChanges(true)">
+										<label class="mr-30 f-14" for="erp_code">By Code</label>
+									</div>
+									<div>
+										<input type="radio" class="custom-control-input" [disabled]="(productionDropDownValue == true)" name="erp_desc" id="erp_description"
+										 [checked]="erpCodeDropdown === false" (change)="onerpCodeDropdownChanges(false)">
+										<label class="mr-30 f-14" for="erp_description">By Description</label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</form>

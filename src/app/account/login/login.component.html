@@ -1,0 +1,80 @@
+<div class="content-wrapper">
+	<div class="content-header row">
+	</div>
+	<div class="content-body">
+		<section class="flexbox-container">
+			<div class="col-12 d-flex align-items-center justify-content-center">
+				<div class="col-md-4 col-10 box-shadow-2 p-0">
+					<div class="card border-grey border-lighten-3 m-0">
+						<div class="card-content">
+							<form class="form-horizontal form-simple" name="loginForm" #loginForm="ngForm" (ngSubmit)="login()" novalidate>
+								<div class="card w-80">
+									<div class="card-body">
+										<div class="card-header border-0">
+											<div class="card-title text-center">
+												<div class="p-1">
+													<img class="left-menu-icon-align" src="assets/braincubate-images/logo.png" width="200px" height="40px">
+												</div>
+											</div>
+											<h6 class="card-subtitle line-on-side text-muted text-center font-small-3 pt-2 w-900">
+												<span class="f-16" style="color:#808080; font-weight:900 ; font-size: 16px;">Login with Braincubate</span>
+											</h6>
+										</div>
+										<div>
+											<label class="label f-16">Username</label>
+											<input type="text" class="form-control form-control-lg f-16" [(ngModel)]="email" id="user-name" name="username" placeholder="Your Username"
+											 required>
+											<div [hidden]="!(loginForm.controls.email?.dirty && loginForm.controls.email?.invalid || loginForm.controls.email?.touched)">
+												<small class="form-text text-danger" [hidden]="!loginForm.controls.email?.errors?.required">
+													username is required.
+												</small>
+											</div>
+										</div>
+										<br>
+										<div>
+											<label class="label f-16">Password</label>
+											<input type="password" class="form-control form-control-lg f-16" [(ngModel)]="password" id="user-password" name="password"
+											 placeholder="Enter Password" required>
+											<div [hidden]="!(loginForm.controls.password?.dirty && loginForm.controls.password?.invalid || loginForm.controls.password?.touched)">
+												<small class="form-text text-danger" [hidden]="!loginForm.controls.password?.errors?.required">
+													Password is required.
+												</small>
+											</div>
+										</div>
+										<br>
+										<!-- <div class="form-group row pull-right">
+											<div class="col-md-12 col-12 text-center text-md-left">
+												<fieldset>
+													<div class="checkbox">
+														<label class="m-b-none i-checks f-16">
+															<input type="checkbox" formControlName="rememberMe" />
+															<i></i>&nbsp;Remember Me
+														</label>
+													</div>
+												</fieldset>
+											</div>
+										</div> -->
+										<!-- <div *ngIf="authenticationError">
+											<small class="form-text text-danger" style="font-size: 14px;"> You have entered an invalid username or password.</small>
+										</div> -->
+
+
+										<div class="btn-center">
+											<button type="submit" [disabled]="loginForm.form.invalid || !loginForm.form.dirty" class="btn btn-lg btn-block btn-color">
+												Login</button>
+										</div>
+										<br>
+										<br>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+	<div class="content-footer">
+
+	</div>
+</div>
