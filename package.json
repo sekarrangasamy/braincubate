@@ -36,7 +36,7 @@
 		"highcharts": "^7.1.2",
 		"highcharts-more": "^0.1.7",
 		"intl": "^1.2.5",
-		"lodash": "^4.17.11",
+		"lodash": "^4.17.21",
 		"moment": "^2.24.0",
 		"ng-loading-spinner": "^1.0.3",
 		"ng-multiselect-dropdown": "^0.2.3",
