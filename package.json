@@ -27,7 +27,7 @@
 		"blueimp-canvas-to-blob": "^3.14.0",
 		"bootstrap": "4.2.1",
 		"bourbon": "^5.0.0",
-		"chart.js": "^2.7.3",
+		"chart.js": "^2.9.4",
 		"classlist.js": "^1.1.20150312",
 		"core-js": "^2.6.3",
 		"cropperjs": "^1.4.3",
